@@ -49,3 +49,12 @@ init::
 
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ret
+
+updateRegisters::
+	xor a
+        ld hl, SHOOT_COOLDOWN
+        or [hl]
+        jr z, .skip
+        dec [hl]
+.skip:
+	ret

@@ -9,12 +9,6 @@
 ;    de -> Not preserved
 ;    hl -> Not preserved
 drawBackground::
-	; Load background into VRAM
-	ld hl, background
-	ld bc, backgroundEnd - background
-	ld de, VRAM_START
-	call uncompress
-
 	ld d, 20
 	ld e, 32
 	ld bc, $20 - 20
@@ -46,7 +40,13 @@ drawBackground::
 ;    de -> Not preserved
 ;    hl -> Not preserved
 loadSprites::
+	; Load background into VRAM
+	ld hl, background
+	ld bc, backgroundEnd - background
+	ld de, VRAM_START
+	call uncompress
+
+	; Load space ship into VRAM
 	ld hl, spaceship
-	ld de, VRAM_TILES_DATA
 	ld bc, spaceshipEnd - spaceship
 	call copyMemory

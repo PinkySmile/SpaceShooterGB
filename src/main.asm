@@ -29,7 +29,9 @@ run::
 	halt
 	dec [hl]
 	push hl
-	call move
+	call executePlayerActions
+	call updateRegisters
+	call updatePlayer
 	pop hl
 	jr .gameLoop
 
@@ -38,5 +40,7 @@ include "src/fatal_error.asm"
 include "src/utils.asm"
 include "src/interrupts.asm"
 include "src/rendering.asm"
+include "src/player.asm"
+include "src/play_sound.asm"
 include "src/obstacle.asm"
 include "src/movement.asm"
