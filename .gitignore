@@ -6,5 +6,4 @@
 *.sav
 *.fx
 .idea
-rom/tools/compressor
-server/private
+tools/compressor
