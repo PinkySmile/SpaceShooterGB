@@ -38,8 +38,5 @@ include "src/fatal_error.asm"
 include "src/utils.asm"
 include "src/interrupts.asm"
 include "src/rendering.asm"
-<<<<<<< HEAD
 include "src/obstacle.asm"
-=======
 include "src/movement.asm"
->>>>>>> bbca80195dc15a95b0e2ef99b49e4b89ac9da4c3

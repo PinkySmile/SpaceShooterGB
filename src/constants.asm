@@ -66,11 +66,10 @@ CHR_TRN EQU $99
 PCT_TRN EQU $A1
 MASK_EN EQU $B9
 
-<<<<<<< HEAD
 ; Obstackes registers
 ; All the obstacles will be added by incrementing the base register
 NB_OBSTACLES EQU $C050
-=======
+
 ; DMA
 START_DMA EQU $0FF46
 DMA_DELAY EQU $28
@@ -79,4 +78,3 @@ DMA EQU $FF80
 ; Player positions
 PLAYER_X EQU $CF00
 PLAYER_Y EQU $CF01
->>>>>>> bbca80195dc15a95b0e2ef99b49e4b89ac9da4c3

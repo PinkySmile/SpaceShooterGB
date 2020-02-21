@@ -7,17 +7,23 @@
 ;    N/A
 
 create_obstacle::
-    ld c, [NB_OBSTACLES]
-    ld b, [c]
+    ld de, [NB_OBSTACLES]
+    ld hl, NB_OBSTACLES
 
-    inc c
+.loop:
+    cp hl, de
+    inc de
+    jp nz, loop
+
+    ld de, af
+    inc de
     ; x value
     call random
-    ld a, [b]
+    ld [hl], a
 
     ; y value is set to 0 the obstacle must start at the top of the screen
-    inc b
-    ld 0, [b]
+    inc hl
+    reset hl
 
 ; Destroy an obstacle
 ; Params:
@@ -27,8 +33,6 @@ create_obstacle::
 ; Registers:
 ;    N/A
 destroy_obstacle::
-    ld a, NB_OBSTACLES
-    ld a, [NB_OBSTACLES]
 
     ; remove the first asteroid from the queue and resize the queue
     ld b, 0
