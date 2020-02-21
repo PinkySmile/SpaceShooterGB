@@ -19,3 +19,9 @@ asteroidsEnd::
 background::
  	incbin "assets/background.cfx"
 backgroundEnd::
+
+; The background asset used.
+laserSprite::
+ 	incbin "assets/laser.cfx"
+ 	incbin "assets/laser.cfx"
+laserSpriteEnd::
