@@ -64,3 +64,7 @@ MLT_REQ EQU $89
 CHR_TRN EQU $99
 PCT_TRN EQU $A1
 MASK_EN EQU $B9
+
+; Obstackes registers
+; All the obstacles will be added by incrementing the base register
+NB_OBSTACLES EQU $C050
