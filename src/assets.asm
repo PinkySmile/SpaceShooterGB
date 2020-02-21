@@ -14,3 +14,8 @@ spaceshipEnd::
 asteroids::
  	incbin "assets/asteroids.fx"
 asteroidsEnd::
+
+; The background asset used.
+background::
+ 	incbin "assets/background.cfx"
+backgroundEnd::

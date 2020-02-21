@@ -195,7 +195,7 @@ displayText::
 	reset LCD_CONTROL
 	ld de, VRAM_BG_START
 	call copyMemory
-	reg LCD_CONTROL, %10010001
+	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ret
 
 ; Wait for VBLANK. Only returns when a VBLANK occurs.
