@@ -1,10 +1,10 @@
 ; Initialize the HRam ($FF80) to use DMA.
 ; Params:
-;    None
+;    a The start address divided by $100.
 ; Return:
 ;    None
 ; Registers:
-;    af -> Preserved
+;    af -> Not preserved
 ;    bc -> Preserved
 ;    de -> Preserved
 ;    hl -> Preserved
@@ -14,6 +14,7 @@ initDMA::
 .wait:
 	dec a
 	jr nz, .wait
+	ret
 initDMA_end:
 
 ; Enable interupts and init RAM
@@ -33,17 +34,17 @@ init::
 
 	reset LCD_CONTROL
 
-	push af
 	xor a
 	ld bc, $2000
 	ld de, $C000
 	call fillMemory
+
 	ld bc, initDMA_end - initDMA
 	ld de, $FF80
 	ld hl, initDMA
 	call copyMemory
-	pop af
 
+	call loadSprites
 	call drawBackground
 
 	reg LCD_CONTROL, LCD_BASE_CONTROL
