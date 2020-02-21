@@ -51,13 +51,17 @@ main::
 	call init               ; Init
 	ld sp, $E000            ; Init stack
 
+	ei
+	reg INTERRUPT_ENABLED, VBLANK_INTERRUPT
 	jr run                  ; Run main program
 
 ; Runs the main program
 run::
-	ei
-	call typeText
-	jp lockup
+	ld hl, $FF42
+.gameLoop:
+	halt
+	dec [hl]
+	jr .gameLoop
 
 include "src/init.asm"
 include "src/fatal_error.asm"

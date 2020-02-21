@@ -307,13 +307,6 @@ displayKeyboard::
 	inc hl
 	ret
 
-; Get all pressed keys
-; Params:
-;    None
-; Return:
-;    a -> All the pressed keys
-;       bit 0 ->
-
 ; Opens the window to type text in.
 ; Params:
 ;    a  -> Character which replace typed text (\0 for no covering)
@@ -335,3 +328,46 @@ typeText::
 
 	ret
 
+; Get all the pressed keys.
+; Params:
+;    None
+; Return:
+;    (Pressed when bit is 0)
+;    a -> All the pressed keys
+;       bit 0 -> Right
+;       bit 1 -> Left
+;       bit 2 -> Up
+;       bit 3 -> Down
+;       bit 4 -> A
+;       bit 5 -> B
+;       bit 6 -> Select
+;       bit 7 -> Start
+; Registers:
+;    af -> Not preserved
+;    b  -> Not preserved
+;    c  -> Preserved
+;    de -> Preserved
+;    hl -> Not preserved
+getKeys::
+	ld hl, $FF00
+	ld a, %00010000
+	ld [hl], a
+	ld a, [hl]
+	ld a, [hl]
+	ld a, [hl]
+	ld a, [hl]
+	ld a, [hl]
+	and a, $F
+	ld b, a
+	swap b
+
+	ld a, %00100000
+	ld [hl], a
+	ld a, [hl]
+	ld a, [hl]
+	ld a, [hl]
+	ld a, [hl]
+	ld a, [hl]
+	and a, $F
+	or b
+	ret
