@@ -17,6 +17,8 @@ vblank_interrupt::
 	jr z, .skip
 	dec [hl]
 .skip:
+	ld a, OAM_SRC_START
+	call DMA
 	pop af
 	pop hl
 	reti

@@ -262,5 +262,3 @@ getKeys::
 	and a, $F
 	or b
 	ret
-
-; Run a DMA

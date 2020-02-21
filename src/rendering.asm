@@ -34,3 +34,19 @@ drawBackground::
 	add hl, bc
 	jr nz, .loop
 	ret
+
+; Load all sprites and put thems inside the VRam
+; Params:
+;    None
+; Return:
+;    None
+; Registers:
+;    af -> Not preserved
+;    bc -> Not preserved
+;    de -> Not preserved
+;    hl -> Not preserved
+loadSprites::
+	ld hl, spaceship
+	ld de, VRAM_TILES_DATA
+	ld bc, spaceshipEnd - spaceship
+	call copyMemory
