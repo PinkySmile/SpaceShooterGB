@@ -47,6 +47,8 @@ main::
 	reg INTERRUPT_ENABLED, VBLANK_INTERRUPT
 	jr run                  ; Run main program
 
+drawBackground::
+	ret
 ; Runs the main program
 run::
 	ld hl, $FF42
