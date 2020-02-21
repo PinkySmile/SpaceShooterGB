@@ -47,8 +47,6 @@ main::
 	reg INTERRUPT_ENABLED, VBLANK_INTERRUPT
 	jr run                  ; Run main program
 
-drawBackground::
-	ret
 ; Runs the main program
 run::
 	ld hl, $FF42
@@ -63,3 +61,4 @@ include "src/fatal_error.asm"
 include "src/utils.asm"
 include "src/sgb_utils.asm"
 include "src/interrupts.asm"
+include "src/rendering.asm"

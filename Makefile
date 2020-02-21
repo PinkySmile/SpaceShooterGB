@@ -16,10 +16,19 @@ FXFLAGS =
 
 FX = rgbgfx
 
-SRCS =	src/main.asm \
-	src/mem_layout.asm
+SRCS = \
+	src/main.asm \
+	src/mem_layout.asm \
+	src/assets.asm
 
-IMGS = 	assets/font.png
+IMGS = \
+	assets/asteroids.png \
+	assets/spaceship.png
+
+COMPRESSED_IMGS = \
+	assets/font.png
+
+COMPRESSEDIMGSFX = $(COMPRESSED_IMGS:%.png=%.cfx)
 
 IMGSFX = $(IMGS:%.png=%.fx)
 
@@ -38,12 +47,15 @@ runw:	re
 
 %.fx : %.png
 	$(FX) $(FXFLAGS) -o $@ $<
+
+%.cfx : %.png
+	$(FX) $(FXFLAGS) -o $@ $<
 	tools/compressor $@
 
 %.o : %.asm
 	$(ASM) -o $@ $(ASMFLAGS) $<
 
-$(NAME).gbc:	$(IMGSFX) $(OBJS)
+$(NAME).gbc:	$(COMPRESSEDIMGSFX) $(IMGSFX) $(OBJS)
 	$(LD) $(LDFLAGS) -o $@ $(OBJS)
 	$(FIX) $(FIXFLAGS) $@
 

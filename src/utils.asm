@@ -1,7 +1,3 @@
-; The fonts used.
-textAssets: incbin "assets/font.fx"
-textAssetsEnd:
-
 ; Uncompress compressed data
 ; Params:
 ;    hl -> Pointer to the compressed data
