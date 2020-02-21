@@ -7,23 +7,23 @@
 ;    N/A
 
 create_obstacle::
-    ld de, [NB_OBSTACLES]
+    ld a, [NB_OBSTACLES]
+    rl a
+    ld b, 0
+    ld c, a
     ld hl, NB_OBSTACLES
+    add hl, bc
 
-.loop:
-    cp hl, de
-    inc de
-    jp nz, loop
+    inc hl
 
-    ld de, af
-    inc de
     ; x value
     call random
     ld [hl], a
 
     ; y value is set to 0 the obstacle must start at the top of the screen
     inc hl
-    reset hl
+    ld a, 0
+    ld [hl], a
 
 ; Destroy an obstacle
 ; Params:
