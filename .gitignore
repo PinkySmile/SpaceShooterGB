@@ -1,0 +1,10 @@
+*.o
+*~
+*.gb
+*.gbc
+*.sym
+*.sav
+*.fx
+.idea
+rom/tools/compressor
+server/private

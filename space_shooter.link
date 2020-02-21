@@ -1,0 +1,27 @@
+ROM0
+	org $0038
+	"rst 38h"
+	
+	org $0040
+	"vblank"
+	
+	org $0048
+	"hblank"
+	
+	org $0050
+	"timer"
+	
+	org $0058
+	"serial"
+	
+	org $0060
+	"joypad"
+
+	org $100
+	"Start"
+
+	org $0104
+	"Header"
+
+	org $150
+	"Main"
