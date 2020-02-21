@@ -26,7 +26,8 @@ IMGS = \
 	assets/spaceship.png
 
 COMPRESSED_IMGS = \
-	assets/font.png
+	assets/font.png \
+	assets/background.png
 
 COMPRESSEDIMGSFX = $(COMPRESSED_IMGS:%.png=%.cfx)
 
