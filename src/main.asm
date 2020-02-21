@@ -51,25 +51,6 @@ main::
 	call init               ; Init
 	ld sp, $E000            ; Init stack
 
-	cp a, CGB_A_INIT        ; Check if on Gameboy Color
-	jr z, GBC
-	call testSGB            ; Check if on SGB
-	jr z, DMG
-	jr SGB
-
-DMG:                            ; We are on monochrome Gameboy
-	ld hl, onlyGBCtext
-	ld bc, onlyGBCtextEnd - onlyGBCtext
-	jp dispError            ; Display error message
-
-GBC:                            ; We are on Gameboy Color
-	call setupGBCPalette    ; Setup palettes
-	reg HARDWARE_TYPE, $01  ; Sets the hardware type register to GBC
-	jr run                  ; Run main program
-
-SGB:                            ; We are on Super Gameboy
-	call loadSGBBorder      ; Load the SGB boarder and display it
-	reg HARDWARE_TYPE, $02  ; Sets the hardware type register to SGB
 	jr run                  ; Run main program
 
 ; Runs the main program

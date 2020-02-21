@@ -6,7 +6,7 @@ LD = rgblink
 
 FIX = rgbfix
 
-FIXFLAGS = -Cjsv -k 01 -l 0x33 -m 0x01 -p 0 -r 00 -t "`echo "$(NAME)" | tr a-z A-Z | tr "_" " "`"
+FIXFLAGS = -jsv -k 01 -l 0x33 -m 0x01 -p 0 -r 00 -t "`echo "$(NAME)" | tr a-z A-Z | tr "_" " "`"
 
 ASMFLAGS =
 
