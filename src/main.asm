@@ -56,6 +56,9 @@ run::
 .gameLoop:
 	halt
 	dec [hl]
+	push hl
+	call move
+	pop hl
 	jr .gameLoop
 
 include "src/init.asm"
@@ -63,3 +66,4 @@ include "src/fatal_error.asm"
 include "src/utils.asm"
 include "src/sgb_utils.asm"
 include "src/interrupts.asm"
+include "src/movement.asm"

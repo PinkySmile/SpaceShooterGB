@@ -32,7 +32,7 @@ fatalError::
 	reg CHANNEL1_LENGTH, %10000000
 	reg CHANNEL1_VOLUME, %11110001
 	reg CHANNEL1_LOW_FREQ, $FF
-        reg CHANNEL1_HIGH_FREQ,%10000001
+    reg CHANNEL1_HIGH_FREQ,%10000001
 	ld b, $FF
 .loopWait:
 	dec d
