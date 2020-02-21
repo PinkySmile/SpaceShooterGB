@@ -5,24 +5,21 @@
 ; Return:
 ;    None
 ; Registers:
-;    af -> Not preserved
+;    hl -> Not preserved
 move::
 	call getKeys
-	push af
-	and %00000001
-	jr z, .right
-	pop af
-	and %00000010
-	jr z, .left
+	bit 0, a
+	call z, .right
+	bit 1, a
+	call z, .left
 	ret
-.right:
-	ld a, [PLAYER_X]
-	inc a
-	ld [PLAYER_X], a
-	pop af
+
+.right::
+	ld hl, PLAYER_X
+	inc [hl]
 	ret
-.left:
-	ld a, [PLAYER_X]
-	dec a
-	ld [PLAYER_X], a
+
+.left::
+	ld hl, PLAYER_X
+	dec [hl]
 	ret
