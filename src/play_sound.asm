@@ -1,9 +1,20 @@
 ;laser sound sfx
+;Channel1
 laser::
 	db $1F, $CF, $85, $D0, $87
 
+;Channel4
 destruction::
 	db $00, $D5, $70, $80
+
+;GO SFX Channel2
+gameOverSFX::
+    db $80, $80, $0C, $86, QUAVER * 4; DO 1
+    db $80, $80, $EF, $85, QUAVER * 4; SI 0
+    db $80, $80, $CD, $85, QUAVER * 4; LA# 0
+    db $80, $80, $AC, $85, QUAVER * 8; LA 0
+    db $80, $80, $AC, $85, $00; LA 0
+
 
 initWPRAM::
     ld hl, WPRAM
