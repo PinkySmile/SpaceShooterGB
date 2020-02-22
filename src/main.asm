@@ -60,7 +60,7 @@ mainMenu::
 ; Runs the main program
 run::
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
-	ld a, $45
+	ld a, $44
 	ld [hli], a
 	ld a, $70
 	ld [hl], a
@@ -71,6 +71,9 @@ run::
 	call drawBackground
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ld hl, $FF42
+	call createObstacle
+	call createObstacle
+	call createObstacle
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
@@ -81,7 +84,6 @@ run::
 	call updateRegisters
 	call updatePlayer
 	call updateLasers
-	call createObstacle
 	call updateObstacles
 	jr .gameLoop
 
