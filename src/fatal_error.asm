@@ -1,3 +1,12 @@
+fatalErrorText::
+	db "PC 38H"
+fatalErrorTextEnd::
+
+pcAt38::
+	ld hl, fatalErrorText
+	ld bc, fatalErrorTextEnd - fatalErrorText
+	jp dispError
+
 ; Displays an error message and lock CPU
 ; Params:
 ;    hl -> Text to display

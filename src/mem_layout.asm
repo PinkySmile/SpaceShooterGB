@@ -1,6 +1,6 @@
 ; Crash handler
 SECTION "rst 38h", ROM0
-	jp fatalError
+	jp pcAt38
 
 SECTION "vblank", ROM0
 	jp vblank_interrupt
