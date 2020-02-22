@@ -7,7 +7,6 @@
 ;    N/A
 checkCollisionSpaceshipAsteroid::
 	ld hl, OBSTACLES_ADDR + 1
-
 .loop:
 	ld a, [hli]
 	ld b, a

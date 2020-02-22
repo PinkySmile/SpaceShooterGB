@@ -27,6 +27,55 @@ deleteLaser::
 	dec de
 	ret
 
+; Collision between spaceship and asteroid
+; Params:
+;    de -> The address of the laser struct
+; Return:
+;    None
+; Registers:
+;    hl -> Preserved
+;	 de -> Preserved
+checkCollisionsWithLasers::
+	push hl
+	ld hl, OBSTACLES_ADDR
+.loop:
+	inc hl
+
+	inc de
+	ld a, [de]
+	cp [hl]
+	call c, laserCollideY
+
+	inc hl
+	inc hl
+	dec de
+
+	ld a, l
+	cp $88
+	jr nz, .loop
+
+	pop hl
+	ret
+
+laserCollideY::
+	inc hl
+	add $16
+	cp b
+	call nc, laserCollideX
+	ret
+
+laserCollideX::
+	dec de
+	ld a, [de]
+	add $10
+	inc de
+	cp [hl]
+	ret c
+	sub $20
+	cp [hl]
+	call c, go
+	ret
+
 updateLasers::
 	xor a
 	ld hl, (OAM_SRC_START << 8) + SPRITE_SIZE * 2
@@ -41,6 +90,8 @@ updateLasers::
 	ld de, SHOOTS_PTR
 .loop:
 	push af
+	call checkCollisionsWithLasers
+
 	inc de
 	ld a, [de]
 	add a, $10
