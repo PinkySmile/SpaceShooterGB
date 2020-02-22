@@ -126,10 +126,5 @@ SPRITE_POSITION_X EQU $1
 SPRITE_TILE_NBR EQU $2
 SPRITE_ATTRIBUTE_FLAGS EQU $3
 
-; Obstacles registers
-; All the obstacles will be added by incrementing the base register
-NB_OBSTACLES EQU $C050
-ASTEROID_SPRITE_INDEX EQU $8
-
 QUAVER EQU $8
 WPRAM EQU $FF30
