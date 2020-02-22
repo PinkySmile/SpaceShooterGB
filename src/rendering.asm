@@ -33,6 +33,12 @@ drawBackground::
 ;    de -> Not preserved
 ;    hl -> Not preserved
 loadSprites::
+	; Load font into VRAM
+	ld hl, textAssets
+	ld bc, textAssetsEnd - textAssets
+	ld de, VRAM_START
+	call uncompress
+
 	; Load background into VRAM
 	ld hl, background
 	ld bc, backgroundEnd - background
@@ -48,3 +54,7 @@ loadSprites::
 	ld hl, laserSprite
 	ld bc, laserSpriteEnd - laserSprite
 	call uncompress
+
+	ld bc, $10
+	ld a, $FF
+	call fillMemory

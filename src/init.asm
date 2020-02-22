@@ -47,9 +47,8 @@ init::
 	reg OBP0, SPACESHIP_PALETTE
 
 	call loadSprites
-	call drawBackground
+	call DMA
 
-	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ret
 
 updateRegisters::
