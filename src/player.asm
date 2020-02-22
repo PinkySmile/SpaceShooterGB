@@ -4,14 +4,9 @@ updatePlayer::
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF]
 	add a, $10
 	ld [hli], a
-
-	;ld a, [$FF43]
-	;ld b, a
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
 	add a, $8
-	;sub b
 	ld [hli], a
-
 	ld a, $2
 	ld [hli], a
 	xor a
@@ -68,12 +63,18 @@ executePlayerActions::
 	ret
 
 .right::
+	ld a, $90
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
+	cp [hl]
+	jr z, .end
 	inc [hl]
 	ret
 
 .left::
+	ld a, $0
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
+	cp [hl]
+	jr z, .end
 	dec [hl]
 	ret
 

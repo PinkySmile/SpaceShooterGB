@@ -29,7 +29,6 @@ run::
 	ld hl, $FF42
 	dec [hl]
 
-	call cameraFollowPlayer
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
@@ -45,4 +44,3 @@ include "src/player.asm"
 include "src/play_sound.asm"
 include "src/obstacle.asm"
 include "src/shoot.asm"
-include "src/camera.asm"
