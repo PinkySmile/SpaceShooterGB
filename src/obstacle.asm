@@ -75,6 +75,7 @@ updateObstacles::
 	jr nc, .deleteObstacle
 
 	; y
+	add $10
 	ld [de], a
 	inc de
 
@@ -96,6 +97,7 @@ updateObstacles::
 	dec hl
 	; y 2
 	ld a, [hli]
+	add $10
 	ld [de], a
 	inc de
 
