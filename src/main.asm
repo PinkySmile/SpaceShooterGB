@@ -22,13 +22,13 @@ lockup::
 main::
 	call init               ; Init
 	ld sp, $E000            ; Init stack
-	;jp intro
+	jp intro
 
 mainMenu::
 	ld hl, menuMelody
-	call playSound
-	ld hl, menuBass
 	call playSound2
+	ld hl, menuBass
+	call playSound
 
 	ld de, OAM_SRC_START << 8
 	ld bc, $A0
