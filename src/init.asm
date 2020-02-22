@@ -53,9 +53,9 @@ init::
 
 updateRegisters::
 	xor a
-        ld hl, SHOOT_COOLDOWN
-        or [hl]
-        jr z, .skip
-        dec [hl]
+    ld hl, SHOOT_COOLDOWN
+    or [hl]
+    jr z, .skip
+    dec [hl]
 .skip:
 	ret

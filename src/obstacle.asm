@@ -101,6 +101,27 @@ updateObstacles::
     ld [de], a
     inc de
 
+    dec hl
+    dec hl
+    ld a, [hli]
+    add a, $10
+    ld [de], a
+    inc de
+
+    ; x
+    ld a, [hli]
+    add a, $10
+    ld [de], a
+    inc de
+
+    ld a, ASTEROID_SPRITE_INDEX + 2
+    ld [de], a
+    inc de
+
+    ld a, 0
+    ld [de], a
+    inc de
+
     ld a, $00
     cp e
     jr nz, .loop
