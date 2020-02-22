@@ -48,7 +48,46 @@ checkAxisX::
 ;    None
 ; Registers:
 ;    N/A
+gameOver::
+	db "GAME  OVER"
+gameOverEnd::
+
 go::
-	; spaceship's pos is set to 0, 0 when hitted
-	jp mainMenu
+	ld hl, destruction
+	call playNoiseSound
+
+	; tp camera to 0, 0
+	call waitVBLANK
+	xor a
+	ld [$FF42], a
+	ld [$FF43], a
+
+    reset LCD_CONTROL
+    reg BGP, %11011000
+    ld de, $9800
+    ld bc, $800
+    ld a, 1
+    call fillMemory
+
+    ld hl, gameOver
+    ld bc, gameOverEnd - gameOver
+    ld de, $9984
+    call copyMemory
+
+    reg LCD_CONTROL, LCD_BASE_CONTROL
+.loop:
+    reset INTERRUPT_REQUEST
+    halt
+    xor a
+    call getKeys
+    bit 7, a
+    jr nz, .loop
+
+	; erease the asteroids
+    ld de, $C050
+    ld bc, 256
+    ld a, 0
+    call fillMemory
+    ;restart
+	jp run
 
