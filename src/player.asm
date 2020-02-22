@@ -19,7 +19,7 @@ updatePlayer::
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
 	add a, $10
 	ld [hli], a
-	ld a, $3
+	ld a, $4
 	ld [hli], a
 	xor a
 	ld [hl], a
