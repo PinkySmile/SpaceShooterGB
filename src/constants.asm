@@ -109,3 +109,8 @@ SPRITE_POSITION_Y EQU $0
 SPRITE_POSITION_X EQU $1
 SPRITE_TILE_NBR EQU $2
 SPRITE_ATTRIBUTE_FLAGS EQU $3
+
+; Obstacles registers
+; All the obstacles will be added by incrementing the base register
+NB_OBSTACLES EQU $C050
+
