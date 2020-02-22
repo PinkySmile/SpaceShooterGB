@@ -4,7 +4,7 @@ include "src/macro.asm"
 SECTION "Main", ROM0
 
 pressStart::
-	db "PRESS START"
+	db "PRESS  START"
 pressStartEnd::
 
 ; Locks the CPU
@@ -36,11 +36,12 @@ mainMenu::
 
 	ld hl, pressStart
 	ld bc, pressStartEnd - pressStart
-	ld de, $9966
+	ld de, $9984
 	call copyMemory
 
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 .loop:
+	call random
 	reset INTERRUPT_REQUEST
 	halt
 	ld hl, SHOOT_COOLDOWN
