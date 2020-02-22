@@ -63,6 +63,8 @@ updateLasers::
 	ld [de], a
 
 	cp a, $EE
+	jr nc, .skip
+	cp a, $90
 	jr c, .skip
 	call deleteLaser
 .skip:
