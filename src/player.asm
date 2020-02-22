@@ -1,6 +1,5 @@
 updatePlayer::
-	ld l, 0
-	ld h, OAM_SRC_START
+	ld hl, OAM_SRC_START << 8
 
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF]
 	add a, $10
@@ -59,6 +58,7 @@ executePlayerActions::
 	ld [hl], BASE_SHOOT_COOLDOWN
 	ld hl, laser
 	call playChannel1Sound
+	call shoot
 	ret
 
 .right::

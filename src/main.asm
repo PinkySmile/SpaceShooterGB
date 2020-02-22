@@ -32,6 +32,7 @@ run::
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
+	call updateLasers
 	pop hl
 	jr .gameLoop
 
@@ -43,3 +44,4 @@ include "src/rendering.asm"
 include "src/player.asm"
 include "src/play_sound.asm"
 include "src/obstacle.asm"
+include "src/shoot.asm"
