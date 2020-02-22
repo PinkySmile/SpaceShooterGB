@@ -83,7 +83,8 @@ destroyObstacle::
 ; Return:
 ;    None
 ; Registers:
-;    N/A
+;    N/A    dec hl
+    dec hl
 updateObstacles::
     ld hl, NB_OBSTACLES + 1
     ld de, (OAM_SRC_START << 8) + SPRITE_SIZE * (NB_PLAYERS + NB_LASERS_MAX)
