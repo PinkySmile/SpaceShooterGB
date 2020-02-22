@@ -2,236 +2,236 @@
 ;channel1
 menuMelody::
 ;patt1
-	db $00, $80, $80, $05, $87, QUAVER * 2 ;DO 2
-	db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-	db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-	db $00, $80, $80, $D6, $86, QUAVER ;LA 1
-	db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-	db $00, $80, $80, $8A, $86, QUAVER ;FA 1
-	db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $E7, $86, QUAVER * 2 ;LA# 1
-	db $00, $80, $80, $8A, $86, QUAVER ;FA 1
-	db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-	db $00, $80, $80, $C4, $86, QUAVER ;SOL# 1
-	db $00, $80, $80, $9E, $86, QUAVER ;FA# 1
-	db $00, $80, $80, $8A, $86, QUAVER * 2 ;FA 1
+	db $80, $00, $20, $05, $87, QUAVER * 2 ;DO 2
+	db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+	db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+	db $80, $00, $20, $D6, $86, QUAVER ;LA 1
+	db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+	db $80, $00, $20, $8A, $86, QUAVER ;FA 1
+	db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $E7, $86, QUAVER * 2 ;LA# 1
+	db $80, $00, $20, $8A, $86, QUAVER ;FA 1
+	db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+	db $80, $00, $20, $C4, $86, QUAVER ;SOL# 1
+	db $80, $00, $20, $9E, $86, QUAVER ;FA# 1
+	db $80, $00, $20, $8A, $86, QUAVER * 2 ;FA 1
 ;patt3
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 ;patt1
-    db $00, $80, $80, $05, $87, QUAVER * 2 ;DO 2
-    db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $D6, $86, QUAVER ;LA 1
-    db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-    db $00, $80, $80, $8A, $86, QUAVER ;FA 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $E7, $86, QUAVER * 2 ;LA# 1
-    db $00, $80, $80, $8A, $86, QUAVER ;FA 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $C4, $86, QUAVER ;SOL# 1
-    db $00, $80, $80, $9E, $86, QUAVER ;FA# 1
-    db $00, $80, $80, $8A, $86, QUAVER * 2 ;FA 1
+    db $80, $00, $20, $05, $87, QUAVER * 2 ;DO 2
+    db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $D6, $86, QUAVER ;LA 1
+    db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+    db $80, $00, $20, $8A, $86, QUAVER ;FA 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $E7, $86, QUAVER * 2 ;LA# 1
+    db $80, $00, $20, $8A, $86, QUAVER ;FA 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $C4, $86, QUAVER ;SOL# 1
+    db $80, $00, $20, $9E, $86, QUAVER ;FA# 1
+    db $80, $00, $20, $8A, $86, QUAVER * 2 ;FA 1
 ;patt4
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $73, $86, QUAVER ;MI 1
-    db $00, $80, $80, $9E, $86, QUAVER ;FA# 1
-    db $00, $80, $80, $C4, $86, QUAVER ;SOL# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $73, $86, QUAVER ;MI 1
+    db $80, $00, $20, $9E, $86, QUAVER ;FA# 1
+    db $80, $00, $20, $C4, $86, QUAVER ;SOL# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 
 ;patt5
-	db $00, $80, $80, $05, $87, QUAVER * 4 ;DO 2
-    db $00, $80, $80, $B2, $86, QUAVER * 4 ;SOL 1
-	db $00, $80, $80, $05, $87, QUAVER * 2 ;DO 2
-    db $00, $80, $80, $E7, $86, QUAVER * 2 ;LA# 1
-    db $00, $80, $80, $D6, $86, QUAVER ;LA 1
-    db $00, $80, $80, $C4, $86, QUAVER ;SOL# 1
-    db $00, $80, $80, $B2, $86, QUAVER / 2 ;SOL 1
-    db $00, $80, $80, $9E, $86, QUAVER / 2 ;FA# 1
-    db $00, $80, $80, $8A, $86, QUAVER / 2 ;FA 1
-    db $00, $80, $80, $73, $86, QUAVER / 2;MI 1
+	db $80, $00, $20, $05, $87, QUAVER * 4 ;DO 2
+    db $80, $00, $20, $B2, $86, QUAVER * 4 ;SOL 1
+	db $80, $00, $20, $05, $87, QUAVER * 2 ;DO 2
+    db $80, $00, $20, $E7, $86, QUAVER * 2 ;LA# 1
+    db $80, $00, $20, $D6, $86, QUAVER ;LA 1
+    db $80, $00, $20, $C4, $86, QUAVER ;SOL# 1
+    db $80, $00, $20, $B2, $86, QUAVER / 2 ;SOL 1
+    db $80, $00, $20, $9E, $86, QUAVER / 2 ;FA# 1
+    db $80, $00, $20, $8A, $86, QUAVER / 2 ;FA 1
+    db $80, $00, $20, $73, $86, QUAVER / 2;MI 1
 ;patt3
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 ;patt5
-	db $00, $80, $80, $05, $87, QUAVER * 4 ;DO 2
-    db $00, $80, $80, $B2, $86, QUAVER * 4 ;SOL 1
-	db $00, $80, $80, $05, $87, QUAVER * 2 ;DO 2
-    db $00, $80, $80, $E7, $86, QUAVER ;LA# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $D6, $86, QUAVER ;LA 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-    db $00, $80, $80, $8A, $86, QUAVER ;FA 1
+	db $80, $00, $20, $05, $87, QUAVER * 4 ;DO 2
+    db $80, $00, $20, $B2, $86, QUAVER * 4 ;SOL 1
+	db $80, $00, $20, $05, $87, QUAVER * 2 ;DO 2
+    db $80, $00, $20, $E7, $86, QUAVER ;LA# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $D6, $86, QUAVER ;LA 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+    db $80, $00, $20, $8A, $86, QUAVER ;FA 1
 ;patt3
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 ;patt2
-    db $00, $80, $80, $9E, $86, QUAVER * 2 ;FA# 1
-    db $00, $80, $80, $C4, $86, QUAVER * 2 ;SOL# 1
-    db $00, $80, $80, $E7, $86, QUAVER * 4 ;LA# 1
-    db $00, $80, $80, $9E, $86, QUAVER * 4 ;FA# 1
-	db $00, $80, $80, $05, $87, QUAVER * 2 ;DO 2
-    db $00, $80, $80, $E7, $86, QUAVER * 2 ;LA# 1
+    db $80, $00, $20, $9E, $86, QUAVER * 2 ;FA# 1
+    db $80, $00, $20, $C4, $86, QUAVER * 2 ;SOL# 1
+    db $80, $00, $20, $E7, $86, QUAVER * 4 ;LA# 1
+    db $80, $00, $20, $9E, $86, QUAVER * 4 ;FA# 1
+	db $80, $00, $20, $05, $87, QUAVER * 2 ;DO 2
+    db $80, $00, $20, $E7, $86, QUAVER * 2 ;LA# 1
 ;patt7
-    db $00, $80, $80, $C4, $86, QUAVER * 4 ;SOL# 1
-    db $00, $80, $80, $2E, $87, QUAVER * 2 ;RE# 2
-    db $00, $80, $80, $21, $87, QUAVER * 2 ;RE 2
-	db $00, $80, $80, $05, $87, QUAVER * 4 ;DO 2
-	db $00, $80, $80, $F7, $86, QUAVER ;SI 1
-	db $00, $80, $80, $05, $87, QUAVER ;DO 2
-	db $00, $80, $80, $14, $87, QUAVER * 2 ;DO# 2
+    db $80, $00, $20, $C4, $86, QUAVER * 4 ;SOL# 1
+    db $80, $00, $20, $2E, $87, QUAVER * 2 ;RE# 2
+    db $80, $00, $20, $21, $87, QUAVER * 2 ;RE 2
+	db $80, $00, $20, $05, $87, QUAVER * 4 ;DO 2
+	db $80, $00, $20, $F7, $86, QUAVER ;SI 1
+	db $80, $00, $20, $05, $87, QUAVER ;DO 2
+	db $80, $00, $20, $14, $87, QUAVER * 2 ;DO# 2
 
 ;patt8
-    db $00, $80, $80, $44, $87, QUAVER ;FA 2
-    db $00, $80, $80, $39, $87, QUAVER ;MI 2
-    db $00, $80, $80, $2E, $87, QUAVER ;RE# 2
-    db $00, $80, $80, $21, $87, QUAVER ;RE 2
-    db $00, $80, $80, $14, $87, QUAVER ;DO# 2
-    db $00, $80, $80, $05, $87, QUAVER ;DO 2
-	db $00, $80, $80, $F7, $86, QUAVER / 2 ;SI 1
-    db $00, $80, $80, $E7, $86, QUAVER / 2 ;LA# 1
-    db $00, $80, $80, $D6, $86, QUAVER / 2 ;LA 1
-    db $00, $80, $80, $C4, $86, QUAVER / 2 ;SOL# 1
-    db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-    db $00, $80, $80, $9E, $86, QUAVER ;FA# 1
-    db $00, $80, $80, $8A, $86, QUAVER / 2;FA 1
-    db $00, $80, $80, $73, $86, QUAVER / 2;MI 1
-    db $00, $80, $80, $5C, $86, QUAVER / 2;RE# 1
-    db $00, $80, $80, $42, $86, QUAVER / 2;RE 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $EF, $85, QUAVER ;SI 0
-    db $00, $80, $80, $CD, $85, QUAVER ;LA# 0
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $44, $87, QUAVER ;FA 2
+    db $80, $00, $20, $39, $87, QUAVER ;MI 2
+    db $80, $00, $20, $2E, $87, QUAVER ;RE# 2
+    db $80, $00, $20, $21, $87, QUAVER ;RE 2
+    db $80, $00, $20, $14, $87, QUAVER ;DO# 2
+    db $80, $00, $20, $05, $87, QUAVER ;DO 2
+	db $80, $00, $20, $F7, $86, QUAVER / 2 ;SI 1
+    db $80, $00, $20, $E7, $86, QUAVER / 2 ;LA# 1
+    db $80, $00, $20, $D6, $86, QUAVER / 2 ;LA 1
+    db $80, $00, $20, $C4, $86, QUAVER / 2 ;SOL# 1
+    db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+    db $80, $00, $20, $9E, $86, QUAVER ;FA# 1
+    db $80, $00, $20, $8A, $86, QUAVER / 2;FA 1
+    db $80, $00, $20, $73, $86, QUAVER / 2;MI 1
+    db $80, $00, $20, $5C, $86, QUAVER / 2;RE# 1
+    db $80, $00, $20, $42, $86, QUAVER / 2;RE 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $EF, $85, QUAVER ;SI 0
+    db $80, $00, $20, $CD, $85, QUAVER ;LA# 0
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 
 ;patt9
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $42, $86, QUAVER ;RE 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $42, $86, QUAVER ;RE 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 
 ;patt3
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 
 ;patt5
-	db $00, $80, $80, $05, $87, QUAVER * 4 ;DO 2
-    db $00, $80, $80, $B2, $86, QUAVER * 4 ;SOL 1
-	db $00, $80, $80, $05, $87, QUAVER * 2 ;DO 2
-    db $00, $80, $80, $E7, $86, QUAVER ;LA# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $D6, $86, QUAVER ;LA 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-    db $00, $80, $80, $8A, $86, QUAVER ;FA 1
+	db $80, $00, $20, $05, $87, QUAVER * 4 ;DO 2
+    db $80, $00, $20, $B2, $86, QUAVER * 4 ;SOL 1
+	db $80, $00, $20, $05, $87, QUAVER * 2 ;DO 2
+    db $80, $00, $20, $E7, $86, QUAVER ;LA# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $D6, $86, QUAVER ;LA 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+    db $80, $00, $20, $8A, $86, QUAVER ;FA 1
 ;patt3
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $80, $29, $86, QUAVER ;DO# 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $20, $29, $86, QUAVER ;DO# 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 
 ;patt10
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $42, $86, QUAVER ;RE 1
-    db $00, $80, $80, $73, $86, QUAVER ;MI 1
-    db $00, $80, $80, $0C, $86, QUAVER ;DO 1
-    db $00, $80, $00, $05, $87, QUAVER ;NO SOUND
-    db $00, $80, $80, $8A, $86, QUAVER ;FA 1
-    db $00, $80, $80, $B2, $86, QUAVER ;SOL 1
-    db $00, $80, $80, $5C, $86, QUAVER * 2 ;RE# 1
-    db $00, $80, $80, $C4, $86, QUAVER * 2 ;SOL# 1
-    db $00, $80, $80, $D6, $86, QUAVER * 2 ;LA 1
-    db $00, $80, $80, $05, $87, QUAVER ;DO 2
-	db $80, $04, $F7, $86, $FF ;Loop
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $42, $86, QUAVER ;RE 1
+    db $80, $00, $20, $73, $86, QUAVER ;MI 1
+    db $80, $00, $20, $0C, $86, QUAVER ;DO 1
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
+    db $80, $00, $20, $8A, $86, QUAVER ;FA 1
+    db $80, $00, $20, $B2, $86, QUAVER ;SOL 1
+    db $80, $00, $20, $5C, $86, QUAVER * 2 ;RE# 1
+    db $80, $00, $20, $C4, $86, QUAVER * 2 ;SOL# 1
+    db $80, $00, $20, $D6, $86, QUAVER * 2 ;LA 1
+    db $80, $00, $20, $05, $87, QUAVER ;DO 2
+	db $80, $00, $00, $05, $86, $FF ;Loop
