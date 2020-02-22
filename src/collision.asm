@@ -84,8 +84,8 @@ go::
     jr nz, .loop
 
 	; erease the asteroids
-    ld de, $C050
-    ld bc, 256
+    ld de, $C01A
+    ld bc, 300
     ld a, 0
     call fillMemory
     ;restart
