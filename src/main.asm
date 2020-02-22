@@ -81,6 +81,7 @@ run::
 	call updatePlayer
 	call updateLasers
 	call createObstacle
+	call updateObstacles
 	jr .gameLoop
 
 include "src/init.asm"
