@@ -5,7 +5,6 @@
 ;    None
 ; Registers:
 ;    N/A
-
 createObstacle::
     ld a, [NB_OBSTACLES]
     rl a
@@ -16,11 +15,11 @@ createObstacle::
     ld hl, NB_OBSTACLES
     add hl, bc
 
-	; y speed downward
-	call random
-	and %00000111
-	inc a
-	ld [hli], a
+    ; y speed downward
+    call random
+    and %00000111
+    inc a
+    ld [hli], a
 
     ; y value is set to 0 the obstacle must start at the top of the screen
     ld a, 10
@@ -61,7 +60,7 @@ destroyObstacle::
     push hl
 
     ld b, 0
-   	ld c, 2
+    ld c, 2
     ld d, h
     ld e, l
     add hl, bc
@@ -88,12 +87,12 @@ updateObstacles::
     ld hl, NB_OBSTACLES + 1
     ld de, (OAM_SRC_START << 8) + SPRITE_SIZE * (NB_PLAYERS + NB_LASERS_MAX)
 .loop;
-	; apply the speed to y
-	ld a, [hli]
-	ld b, a
-	ld a, [hl]
-	add b
-	ld [hli], a
+    ; apply the speed to y
+    ld a, [hli]
+    ld b, a
+    ld a, [hl]
+    add b
+    ld [hli], a
 
     ; y
     ld [de], a
@@ -109,7 +108,7 @@ updateObstacles::
     ld [de], a
     inc de
 
-    ld a, 0
+    ld a, %00010000
     ld [de], a
     inc de
 
@@ -130,7 +129,7 @@ updateObstacles::
     ld [de], a
     inc de
 
-    ld a, 0
+    ld a, %00010000
     ld [de], a
     inc de
 
