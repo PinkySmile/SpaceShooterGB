@@ -22,6 +22,7 @@ lockup::
 main::
 	call init               ; Init
 	ld sp, $E000            ; Init stack
+	jp intro
 
 mainMenu::
 	call waitVBLANK
@@ -76,7 +77,7 @@ run::
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
-	ld hl, $FF42
+	ld hl, SCROLL_Y
 	dec [hl]
 
 	call checkCollisionSpaceshipAsteroid
@@ -98,4 +99,5 @@ include "src/player.asm"
 include "src/play_sound.asm"
 include "src/obstacle.asm"
 include "src/shoot.asm"
+include "src/intro.asm"
 include "src/collision.asm"

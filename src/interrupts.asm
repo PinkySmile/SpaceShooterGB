@@ -9,8 +9,8 @@
 ;    de -> Preserved
 ;    hl -> Preserved
 vblank_interrupt::
-	push hl
 	push af
+	push hl
 	xor a
 	ld hl, FRAME_COUNTER
 	or [hl]
@@ -19,8 +19,8 @@ vblank_interrupt::
 .skip:
 	ld a, OAM_SRC_START
 	call DMA
-	pop af
 	pop hl
+	pop af
 	reti
 
 ; HBLANK interrupt handler

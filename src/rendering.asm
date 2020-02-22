@@ -61,5 +61,16 @@ loadSprites::
 	call copyMemory
 
 	ld bc, $10
-	ld a, $FF
+	xor a
 	call fillMemory
+
+	ld de, $8800
+	ld hl, EpitechLogo
+	ld bc, EpitechLogoEnd - EpitechLogo
+	call uncompress
+
+	; Load JAM letters into VRAM
+	ld hl, JAMLetters
+	ld bc, JAMLettersEnd - JAMLetters
+	call uncompress
+

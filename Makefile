@@ -27,6 +27,10 @@ IMGS = \
 
 COMPRESSED_IMGS = \
 	assets/font.png \
+	assets/bigj.png \
+	assets/biga.png \
+	assets/bigm.png \
+	assets/epitech.png \
 	assets/background.png \
 	assets/laser.png
 
@@ -63,7 +67,7 @@ $(NAME).gbc:	$(COMPRESSEDIMGSFX) $(IMGSFX) $(OBJS)
 
 clean:
 	$(MAKE) -C tools clean
-	$(RM) $(OBJS) $(IMGSFX)
+	$(RM) $(OBJS) $(IMGSFX) $(COMPRESSEDIMGSFX)
 
 fclean:	clean
 	$(MAKE) -C tools fclean
