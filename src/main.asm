@@ -25,8 +25,14 @@ main::
 	jp intro
 
 mainMenu::
+	ld de, OAM_SRC_START << 8
+	ld bc, $A0
+	xor a
+	call fillMemory
+
 	call waitVBLANK
 	reset LCD_CONTROL
+	call DMA
 	reg BGP, %11011000
 	reg SHOOT_COOLDOWN, 30
 
