@@ -67,7 +67,7 @@ $(NAME).gbc:	$(COMPRESSEDIMGSFX) $(IMGSFX) $(OBJS)
 
 clean:
 	$(MAKE) -C tools clean
-	$(RM) $(OBJS) $(IMGSFX)
+	$(RM) $(OBJS) $(IMGSFX) $(COMPRESSEDIMGSFX)
 
 fclean:	clean
 	$(MAKE) -C tools fclean
