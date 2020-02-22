@@ -79,6 +79,7 @@ run::
 	ld hl, $FF42
 	dec [hl]
 
+	call checkCollisionSpaceshipAsteroid
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
