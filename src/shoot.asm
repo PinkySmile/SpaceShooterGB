@@ -1,36 +1,43 @@
 deleteLaser::
 	push hl
+	push de
 
-	ld b, 0
-	ld c, 2
-	ld d, h
-	ld e, l
-	add hl, bc
 	ld a,[NB_SHOOTS]
-	ld c, a
-	rl c
 	dec a
 	ld [NB_SHOOTS],a
+
+	ld h, d
+	ld l, e
+
+	add a, e
+	sub SHOOTS_PTR & $FF
+	rla
+
+	ld b, 0
+	ld c, a
+
+	inc hl
+	dec de
+
 	call copyMemory
 
+	pop de
 	pop hl
-	dec hl
-	dec hl
+	dec de
+	dec de
 	ret
 
 updateLasers::
-	ld a,[NB_SHOOTS]
-	or a
-	ret z
-
+	xor a
 	ld hl, (OAM_SRC_START << 8) + SPRITE_SIZE * 2
 	ld d, h
 	ld e, l
-	ld b, 0
-	ld c, a
-	rl c
+	ld bc, 40
 	call fillMemory
 
+	ld a,[NB_SHOOTS]
+	or a
+	ret z
 	ld de, SHOOTS_PTR
 .loop:
 	push af
@@ -55,6 +62,12 @@ updateLasers::
 	sub a, 4
 	ld [de], a
 
+	cp a, $EE
+	jr nc, .skip
+	cp a, $90
+	jr c, .skip
+	call deleteLaser
+.skip:
 	inc de
 	pop af
 	dec a
