@@ -65,13 +65,20 @@ updateObstacles::
 	ld hl, OBSTACLES_ADDR
 	ld de, (OAM_SRC_START << 8) + SPRITE_SIZE * (NB_PLAYERS + NB_LASERS_MAX)
 .loop;
+	xor a
+	cp l
+	ret z
+
 	; apply the speed to y
 	ld a, [hli]
+	cp $0
+	jr z, .skipObstacle
 	ld b, a
 	ld a, [hl]
 	add b
 	ld [hli], a
 
+	; delete the asteroid if it's height is bellow C0
 	cp $C0
 	jr nc, .deleteObstacle
 
@@ -118,17 +125,30 @@ updateObstacles::
 
 	; the padding byte
 	inc hl
-
-	ld a, $00
-	cp e
-	jr nz, .loop
-	ret
+	jr .loop
 .deleteObstacle:
 	dec hl
+.skipObstacle:
 	dec hl
 	xor a
 	ld [hli], a
-	inc hl
-	inc hl
-	inc hl
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	ld [de], a
 	jr .loop
