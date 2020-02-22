@@ -49,6 +49,7 @@ init::
 
 	call loadSprites
 	call DMA
+	call initWPRAM
 
 	ret
 

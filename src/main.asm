@@ -25,6 +25,11 @@ main::
 	jp intro
 
 mainMenu::
+	ld hl, menuMelody
+	call playSound
+	ld hl, menuBass
+	call playSound2
+
 	ld de, OAM_SRC_START << 8
 	ld bc, $A0
 	xor a
@@ -51,6 +56,8 @@ mainMenu::
 	call random
 	reset INTERRUPT_REQUEST
 	halt
+	call updateSound
+	call updateSound2
 	ld hl, SHOOT_COOLDOWN
 	xor a
 	dec [hl]
@@ -68,6 +75,8 @@ mainMenu::
 run::
 	ld hl, gameMelody
 	call playSound
+	ld hl, gameBass
+	call playSound2
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	ld a, $44
 	ld [hli], a
@@ -93,6 +102,7 @@ run::
 	call updateLasers
 	call updateObstacles
 	call updateSound
+	call updateSound2
 	call spawnObstacles
 	jr .gameLoop
 
@@ -107,3 +117,7 @@ include "src/obstacle.asm"
 include "src/shoot.asm"
 include "src/intro.asm"
 include "src/collision.asm"
+include "src/game_bass.asm"
+include "src/game_melody.asm"
+include "src/menu_bass.asm"
+include "src/menu_melody.asm"

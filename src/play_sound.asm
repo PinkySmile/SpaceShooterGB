@@ -6,17 +6,17 @@ destruction::
 	db $00, $D5, $70, $80
 
 initWPRAM::
-    ld hl, WPRAM
-    ld c, 8
-    xor a
+	ld hl, WPRAM
+	ld c, 8
+	xor a
 .loop:
-    dec a
-    ld [hli], a
-    inc a
-    ld [hli], a
-    dec c
-    jr nz, .loop
-    ret
+	dec a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	dec c
+	jr nz, .loop
+	ret
 
 playChannel1Sound::
 	ld de, CHANNEL1_SWEEP
@@ -93,8 +93,49 @@ updateSound::
 playSound::
 	ld a, h
 	ld [MUSIC_PTR_H], a
+	ld [MUSIC_START_PTR_H], a
 	ld a, l
 	ld [MUSIC_PTR_L], a
+	ld [MUSIC_START_PTR_L], a
 	ld a, 1
 	ld [MUSIC_TIMER], a
+	ret
+
+updateSound2::
+	xor a
+	ld hl, MUSIC_2_TIMER
+	or [hl]
+	jr z, .skip
+	dec [hl]
+	jr nz, .skip
+	ld a, [MUSIC_2_PTR_H]
+	ld h, a
+	ld a, [MUSIC_2_PTR_L]
+	ld l, a
+	call playChannelWave
+	ld a, [hli]
+	cp a, $FF
+	jr z, .reset
+	ld [MUSIC_2_TIMER], a
+	ld a, h
+	ld [MUSIC_2_PTR_H], a
+	ld a, l
+	ld [MUSIC_2_PTR_L], a
+	ret
+.reset:
+	reg MUSIC_2_PTR_H, [MUSIC_2_START_PTR_H]
+	reg MUSIC_2_PTR_L, [MUSIC_2_START_PTR_L]
+	reg MUSIC_2_TIMER, QUAVER
+.skip:
+	ret
+
+playSound2::
+	ld a, h
+	ld [MUSIC_2_PTR_H], a
+	ld [MUSIC_2_START_PTR_H], a
+	ld a, l
+	ld [MUSIC_2_PTR_L], a
+	ld [MUSIC_2_START_PTR_L], a
+	ld a, 1
+	ld [MUSIC_2_TIMER], a
 	ret
