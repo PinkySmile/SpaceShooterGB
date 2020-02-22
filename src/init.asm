@@ -44,6 +44,8 @@ init::
 	ld hl, initDMA
 	call copyMemory
 
+	reg OBP0, SPACESHIP_PALETTE
+
 	call loadSprites
 	call drawBackground
 
