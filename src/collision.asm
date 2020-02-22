@@ -24,7 +24,7 @@ checkCollisionSpaceshipAsteroid::
 checkAxisY::
 	add $16
 	cp b
-	call c, checkAxisX
+	call nc, checkAxisX
 	ret
 
 checkAxisX::
@@ -49,7 +49,6 @@ checkAxisX::
 ; Registers:
 ;    N/A
 go::
-	ld b,b
 	; spaceship's pos is set to 0, 0 when hitted
 	jp mainMenu
 
