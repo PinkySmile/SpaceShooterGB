@@ -9,9 +9,6 @@
 ;    de -> Not preserved
 ;    hl -> Not preserved
 drawBackground::
-	ld d, 20
-	ld e, 32
-	ld bc, $20 - 20
 	ld hl, VRAM_BG_START
 .loop:
 	call random
@@ -21,12 +18,8 @@ drawBackground::
 	ld a, 1
 .skip:
 	ld [hli], a
-	dec d
-	jr nz, .loop
-	dec e
-	ld d, 20
-	add hl, bc
-	jr nz, .loop
+	bit 5, h
+	jr z, .loop
 	ret
 
 ; Load all sprites and put thems inside the VRam
