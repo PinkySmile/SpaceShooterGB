@@ -24,15 +24,15 @@ main::
 
 ; Runs the main program
 run::
-	ld hl, $FF42
 .gameLoop:
 	halt
+	ld hl, $FF42
 	dec [hl]
-	push hl
+
+	call cameraFollowPlayer
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
-	pop hl
 	jr .gameLoop
 
 include "src/init.asm"
