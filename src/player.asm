@@ -63,12 +63,18 @@ executePlayerActions::
 	ret
 
 .right::
+	ld a, $90
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
+	cp [hl]
+	jr z, .end
 	inc [hl]
 	ret
 
 .left::
+	ld a, $0
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
+	cp [hl]
+	jr z, .end
 	dec [hl]
 	ret
 

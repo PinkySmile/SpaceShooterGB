@@ -24,17 +24,16 @@ main::
 
 ; Runs the main program
 run::
-	ld hl, $FF42
 .gameLoop:
 	halt
+	ld hl, $FF42
 	dec [hl]
-	push hl
+
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
 	call updateLasers
 	call createObstacle
-	pop hl
 	jr .gameLoop
 
 include "src/init.asm"
