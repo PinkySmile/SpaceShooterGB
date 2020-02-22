@@ -56,9 +56,9 @@ loadSprites::
 	call uncompress
 
 	; Load asteroids into VRAM
-    ld hl, asteroids
-    ld bc, asteroidsEnd - asteroids
-    call copyMemory
+	ld hl, asteroids
+	ld bc, asteroidsEnd - asteroids
+	call copyMemory
 
 	ld bc, $10
 	ld a, $FF
