@@ -45,6 +45,7 @@ init::
 	call copyMemory
 
 	reg OBP0, SPACESHIP_PALETTE
+	reg OBP1, ENNEMIES_PALETTE
 
 	call loadSprites
 	call DMA
@@ -53,9 +54,9 @@ init::
 
 updateRegisters::
 	xor a
-    ld hl, SHOOT_COOLDOWN
-    or [hl]
-    jr z, .skip
-    dec [hl]
+	ld hl, SHOOT_COOLDOWN
+	or [hl]
+	jr z, .skip
+	dec [hl]
 .skip:
 	ret
