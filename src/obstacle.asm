@@ -1,3 +1,19 @@
+; Spawn an obstacle but not always
+spawnObstacles:
+	ld a, [ASTEROID_SPAWN_IN]
+	or a
+	call z, updateSpawnTimer
+	dec a
+	ld [ASTEROID_SPAWN_IN], a
+	ret
+
+updateSpawnTimer::
+	call createObstacle
+	call random
+	and %00011111
+	inc a
+	ret
+
 ; Create a random obstacle
 ; Params:
 ;    None
@@ -5,7 +21,6 @@
 ;    None
 ; Registers:
 ;    N/A
-
 createObstacle::
 	ld hl, OBSTACLES_ADDR
 .loop:
@@ -21,7 +36,7 @@ createObstacle::
 
 	; y speed downward
 	call random
-	and %00000111
+	and %00000011
 	inc a
 	ld [hli], a
 

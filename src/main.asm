@@ -73,9 +73,6 @@ run::
 	call drawBackground
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ld hl, $FF42
-	call createObstacle
-	call createObstacle
-	call createObstacle
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
@@ -88,6 +85,7 @@ run::
 	call updateLasers
 	call updateObstacles
 	call updateSound
+	call spawnObstacles
 	jr .gameLoop
 
 include "src/init.asm"
