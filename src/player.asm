@@ -68,6 +68,7 @@ executePlayerActions::
 	cp [hl]
 	jr z, .end
 	inc [hl]
+	inc [hl]
 	ret
 
 .left::
@@ -75,6 +76,7 @@ executePlayerActions::
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	cp [hl]
 	jr z, .end
+	dec [hl]
 	dec [hl]
 	ret
 
@@ -84,6 +86,7 @@ executePlayerActions::
 	cp [hl]
 	jr z, .end
 	dec [hl]
+	dec [hl]
 	ret
 
 .down::
@@ -91,6 +94,7 @@ executePlayerActions::
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
 	cp [hl]
 	jr c, .end
+	inc [hl]
 	inc [hl]
 .end:
 	ret
