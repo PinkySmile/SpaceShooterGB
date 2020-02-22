@@ -59,6 +59,8 @@ mainMenu::
 
 ; Runs the main program
 run::
+	ld hl, gameMelody
+	call playSound
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	ld a, $45
 	ld [hli], a
@@ -83,6 +85,7 @@ run::
 	call updateLasers
 	call createObstacle
 	call updateObstacles
+	call updateSound
 	jr .gameLoop
 
 include "src/init.asm"
