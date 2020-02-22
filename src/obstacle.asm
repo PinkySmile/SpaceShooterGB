@@ -73,7 +73,7 @@ updateObstacles::
 	ld [de], a
 	inc de
 
-	ld a, 0
+	ld a, %00010000
 	ld [de], a
 	inc de
 
@@ -94,7 +94,7 @@ updateObstacles::
 	ld [de], a
 	inc de
 
-	ld a, 0
+	ld a, %00010000
 	ld [de], a
 	inc de
 
