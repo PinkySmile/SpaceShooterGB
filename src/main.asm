@@ -74,21 +74,20 @@ run::
 	call drawBackground
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ld hl, $FF42
-	call createObstacle
-	call createObstacle
-	call createObstacle
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
 	ld hl, SCROLL_Y
 	dec [hl]
 
+	call checkCollisionSpaceshipAsteroid
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
 	call updateLasers
 	call updateObstacles
 	call updateSound
+	call spawnObstacles
 	jr .gameLoop
 
 include "src/init.asm"
@@ -101,3 +100,4 @@ include "src/play_sound.asm"
 include "src/obstacle.asm"
 include "src/shoot.asm"
 include "src/intro.asm"
+include "src/collision.asm"

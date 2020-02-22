@@ -63,7 +63,7 @@ executePlayerActions::
 	ret
 
 .right::
-	ld a, $90
+	ld a, $8E
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	cp [hl]
 	jr z, .end
@@ -72,7 +72,7 @@ executePlayerActions::
 	ret
 
 .left::
-	ld a, $0
+	ld a, $2
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	cp [hl]
 	jr z, .end
@@ -81,7 +81,7 @@ executePlayerActions::
 	ret
 
 .up::
-	ld a, $0
+	ld a, $2
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
 	cp [hl]
 	jr z, .end
@@ -90,7 +90,7 @@ executePlayerActions::
 	ret
 
 .down::
-	ld a, $7F
+	ld a, $7E
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
 	cp [hl]
 	jr c, .end

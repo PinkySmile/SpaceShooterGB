@@ -1,3 +1,19 @@
+; Spawn an obstacle but not always
+spawnObstacles:
+	ld a, [ASTEROID_SPAWN_IN]
+	or a
+	call z, updateSpawnTimer
+	dec a
+	ld [ASTEROID_SPAWN_IN], a
+	ret
+
+updateSpawnTimer::
+	call createObstacle
+	call random
+	and %00011111
+	inc a
+	ret
+
 ; Create a random obstacle
 ; Params:
 ;    None
@@ -5,25 +21,27 @@
 ;    None
 ; Registers:
 ;    N/A
-
 createObstacle::
-	ld a, [NB_OBSTACLES]
-	rl a
-	rl a
-	inc a
-	ld b, 0
-	ld c, a
-	ld hl, NB_OBSTACLES
-	add hl, bc
+	ld hl, OBSTACLES_ADDR
+.loop:
+	ld a, [hli]
+	or a
+	jr z, .endLoop
+	inc hl
+	inc hl
+	inc hl
+	jr .loop
+.endLoop:
+	dec hl
 
 	; y speed downward
 	call random
-	and %00000111
+	and %00000011
 	inc a
 	ld [hli], a
 
 	; y value is set to 0 the obstacle must start at the top of the screen
-	ld a, 10
+	ld a, 0
 	ld [hli], a
 
 	; x value
@@ -31,7 +49,7 @@ createObstacle::
 	and %01111111
 	ld [hli], a
 
-	ld hl, NB_OBSTACLES
+	ld hl, OBSTACLES_ADDR
 	inc [hl]
 	ret
 
@@ -41,9 +59,10 @@ createObstacle::
 ; Return:
 ;    None
 ; Registers:
-;    N/A
+;    N/A    dec hl
+    dec hl
 updateObstacles::
-	ld hl, NB_OBSTACLES + 1
+	ld hl, OBSTACLES_ADDR
 	ld de, (OAM_SRC_START << 8) + SPRITE_SIZE * (NB_PLAYERS + NB_LASERS_MAX)
 .loop;
 	; apply the speed to y
@@ -57,6 +76,7 @@ updateObstacles::
 	jr nc, .deleteObstacle
 
 	; y
+	add $10
 	ld [de], a
 	inc de
 
@@ -78,6 +98,7 @@ updateObstacles::
 	dec hl
 	; y 2
 	ld a, [hli]
+	add $10
 	ld [de], a
 	inc de
 
