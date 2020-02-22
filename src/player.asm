@@ -36,21 +36,22 @@ updatePlayer::
 ;    hl -> Not preserved
 executePlayerActions::
 	call getKeys
-	bit 0, a
-	call z, .right
-	bit 1, a
-	call z, .left
-	bit 2, a
-	call z, .down
-	bit 3, a
-	call z, .up
-	bit 4, a
-	call z, .shoot
-	bit 5, a
-	call z, .shoot
+	ld b, a
+	bit 0, b
+	call z, right
+	bit 1, b
+	call z, left
+	bit 2, b
+	call z, up
+	bit 3, b
+	call z, down
+	bit 4, b
+	call z, shoot
+	bit 5, b
+	call z, shoot
 	ret
 
-.shoot::
+shoot::
 	xor a
 	ld hl, SHOOT_COOLDOWN
 	or [hl]
@@ -61,22 +62,30 @@ executePlayerActions::
 	call shoot
 	ret
 
-.right::
+right::
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	inc [hl]
 	ret
 
-.left::
+left::
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	dec [hl]
 	ret
 
-.up::
+up::
+	ld a, $0
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
-	inc [hl]
+	cp [hl]
+	jr z, .end
+	dec [hl]
+.end:
 	ret
 
-.down::
+down::
+	ld a, $7F
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
-	dec [hl]
+	cp [hl]
+	jr c, .end
+	inc [hl]
+.end:
 	ret
