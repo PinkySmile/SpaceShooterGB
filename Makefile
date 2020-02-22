@@ -27,6 +27,10 @@ IMGS = \
 
 COMPRESSED_IMGS = \
 	assets/font.png \
+	assets/bigj.png \
+	assets/biga.png \
+	assets/bigm.png \
+	assets/epitech.png \
 	assets/background.png \
 	assets/laser.png
 

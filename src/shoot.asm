@@ -78,6 +78,7 @@ shoot::
 	ld a,[NB_SHOOTS]
 	ld b, 0
 	ld c, a
+	add 0
 	rl c
 	inc a
 	ld [NB_SHOOTS], a

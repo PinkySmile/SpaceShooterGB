@@ -25,3 +25,15 @@ laserSprite::
  	incbin "assets/laser.cfx"
  	incbin "assets/laser.cfx"
 laserSpriteEnd::
+
+; The background asset used.
+EpitechLogo::
+ 	incbin "assets/epitech.cfx"
+EpitechLogoEnd::
+
+; The jam lettres
+JAMLetters::
+ 	incbin "assets/bigj.cfx"
+ 	incbin "assets/biga.cfx"
+ 	incbin "assets/bigm.cfx"
+JAMLettersEnd::
