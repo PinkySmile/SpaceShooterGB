@@ -24,6 +24,11 @@ main::
 
 ; Runs the main program
 run::
+	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
+	ld a, $45
+	ld [hli], a
+	ld a, $70
+	ld [hl], a
 .gameLoop:
 	halt
 	ld hl, $FF42
