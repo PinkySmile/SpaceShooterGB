@@ -33,6 +33,7 @@ run::
 	call updateRegisters
 	call updatePlayer
 	call updateLasers
+	call createObstacle
 	pop hl
 	jr .gameLoop
 
