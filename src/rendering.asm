@@ -43,3 +43,8 @@ loadSprites::
 	ld hl, spaceship
 	ld bc, spaceshipEnd - spaceship
 	call copyMemory
+
+	; Load laser into VRAM
+	ld hl, laserSprite
+	ld bc, laserSpriteEnd - laserSprite
+	call uncompress

@@ -33,6 +33,7 @@ run::
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
+	call updateLasers
 	jr .gameLoop
 
 include "src/init.asm"
@@ -43,3 +44,5 @@ include "src/rendering.asm"
 include "src/player.asm"
 include "src/play_sound.asm"
 include "src/obstacle.asm"
+include "src/shoot.asm"
+include "src/camera.asm"
