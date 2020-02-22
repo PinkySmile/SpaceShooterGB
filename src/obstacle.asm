@@ -7,14 +7,17 @@
 ;    N/A
 
 createObstacle::
-	ld a, [NB_OBSTACLES]
-	rl a
-	rl a
-	inc a
-	ld b, 0
-	ld c, a
-	ld hl, NB_OBSTACLES
-	add hl, bc
+	ld hl, OBSTACLES_ADDR
+.loop:
+	ld a, [hli]
+	or a
+	jr z, .endLoop
+	inc hl
+	inc hl
+	inc hl
+	jr .loop
+.endLoop:
+	dec hl
 
 	; y speed downward
 	call random
@@ -23,7 +26,7 @@ createObstacle::
 	ld [hli], a
 
 	; y value is set to 0 the obstacle must start at the top of the screen
-	ld a, 10
+	ld a, 0
 	ld [hli], a
 
 	; x value
@@ -31,7 +34,7 @@ createObstacle::
 	and %01111111
 	ld [hli], a
 
-	ld hl, NB_OBSTACLES
+	ld hl, OBSTACLES_ADDR
 	inc [hl]
 	ret
 
@@ -44,7 +47,7 @@ createObstacle::
 ;    N/A    dec hl
     dec hl
 updateObstacles::
-	ld hl, NB_OBSTACLES + 1
+	ld hl, OBSTACLES_ADDR
 	ld de, (OAM_SRC_START << 8) + SPRITE_SIZE * (NB_PLAYERS + NB_LASERS_MAX)
 .loop;
 	; apply the speed to y
