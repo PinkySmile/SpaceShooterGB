@@ -73,7 +73,18 @@ laserCollideX::
 	ret c
 	sub $20
 	cp [hl]
-	call c, go
+	call c, lazerCollided
+	ret
+
+lazerCollided::
+	;push hl
+	;push de
+	;dec de
+	;ld h, d
+	;ld l, e
+	;call deleteLaser
+	;pop de
+	;pop hl
 	ret
 
 updateLasers::
