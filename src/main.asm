@@ -107,6 +107,8 @@ run::
 	ld [hl-], a
 	reg DISABLE_BOSS, 1
 
+	reg OBP1, ENNEMIES_PALETTE
+
 	ld hl, gameMelody
 	call playSound
 	ld hl, gameBass

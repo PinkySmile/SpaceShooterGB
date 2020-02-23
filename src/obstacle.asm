@@ -199,8 +199,9 @@ deleteObstacle::
 	rla
 	rla
 
-	add a, e
-	sub OBSTACLES_ADDR & $FF
+	dec de
+	add OBSTACLES_ADDR & $FF
+	sub a, e
 	rla
 	rla
 
@@ -210,7 +211,6 @@ deleteObstacle::
 	inc hl
 	inc hl
 	inc hl
-	dec de
 
 	call copyMemory
 

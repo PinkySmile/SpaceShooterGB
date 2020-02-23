@@ -10,15 +10,15 @@ deleteLaser::
 	ld l, e
 
 	rla
-	add a, e
-	sub SHOOTS_PTR & $FF
+	dec de
+	add SHOOTS_PTR & $FF
+	sub e
 	rla
 
 	ld b, 0
 	ld c, a
 
 	inc hl
-	dec de
 
 	call copyMemory
 
@@ -36,6 +36,10 @@ deleteLaser::
 ; Registers:
 ;    af -> Not preserved
 checkCollisionsWithBoss::
+	ld a, [BOSS_STATUS]
+	or a
+	ret z
+
 	push hl
 	push de
 
