@@ -9,6 +9,7 @@ deleteLaser::
 	ld h, d
 	ld l, e
 
+	rla
 	add a, e
 	sub SHOOTS_PTR & $FF
 	rla
@@ -146,7 +147,6 @@ shoot::
 	ld [NB_SHOOTS], a
 	ld hl, SHOOTS_PTR
 	add hl, bc
-	ld bc, 2
 	ld d, h
 	ld e, l
 	ld hl, PLAYER1_STRUCT

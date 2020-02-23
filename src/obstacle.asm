@@ -22,17 +22,19 @@ updateSpawnTimer::
 ; Registers:
 ;    N/A
 createObstacle::
+	ld a,[NB_OBSTACLES]
+	cp 8
+	ret z
+	ld b, 0
+	ld c, a
+	add 0
+	rl c
+	rl c
+	inc a
+	ld [NB_OBSTACLES], a
 	ld hl, OBSTACLES_ADDR
-.loop:
-	ld a, [hli]
-	or a
-	jr z, .endLoop
-	inc hl
-	inc hl
-	inc hl
-	jr .loop
-.endLoop:
-	dec hl
+	add hl, bc
+	ld bc, 2
 
 	; y speed downward
 	call random
@@ -41,16 +43,13 @@ createObstacle::
 	ld [hli], a
 
 	; y value is set to 0 the obstacle must start at the top of the screen
-	ld a, 0
+	xor a
 	ld [hli], a
 
 	; x value
 	call random
 	and %01111111
 	ld [hli], a
-
-	ld hl, OBSTACLES_ADDR
-	inc [hl]
 	ret
 
 ; Update all obstacles
@@ -62,25 +61,26 @@ createObstacle::
 ;    N/A    dec hl
     dec hl
 updateObstacles::
+	xor a
+	ld de, (OAM_SRC_START << 8) + SPRITE_SIZE * (NB_PLAYERS + NB_LASERS_MAX)
+	ld bc, SPRITE_SIZE * 28
+	call fillMemory
+
 	ld hl, OBSTACLES_ADDR
 	ld de, (OAM_SRC_START << 8) + SPRITE_SIZE * (NB_PLAYERS + NB_LASERS_MAX)
-.loop;
-	xor a
-	cp l
+
+	ld a, [NB_OBSTACLES]
+	or a
 	ret z
+.loop:
+	push af
 
 	; apply the speed to y
 	ld a, [hli]
-	cp $0
-	jr z, .skipObstacle
 	ld b, a
 	ld a, [hl]
 	add b
 	ld [hli], a
-
-	; delete the asteroid if it's height is bellow C0
-	cp $C0
-	jr nc, .deleteObstacle
 
 	; y
 	add $10
@@ -103,13 +103,13 @@ updateObstacles::
 
 	dec hl
 	dec hl
-	; y 2
+	; y
 	ld a, [hli]
 	add $10
 	ld [de], a
 	inc de
 
-	; x
+	; x 2
 	ld a, [hli]
 	add a, $10
 	ld [de], a
@@ -123,32 +123,58 @@ updateObstacles::
 	ld [de], a
 	inc de
 
+	; delete the asteroid if it's y pos is below C0
+	dec hl
+	dec hl
+	ld a, [hl]
+	cp $C0
+	jr c, .skip
+	call deleteObstacle
+.skip:
 	; the padding byte
 	inc hl
-	jr .loop
-.deleteObstacle:
+	inc hl
+	inc hl
+
+	pop af
+	dec a
+	jr nz, .loop
+	ret
+
+
+deleteObstacle::
+	push hl
+	push de
+
+	ld a,[NB_OBSTACLES]
+	dec a
+	ld [NB_OBSTACLES],a
+
+	ld d, h
+	ld e, l
+
+	rla
+	rla
+
+	add a, e
+	sub OBSTACLES_ADDR & $FF
+	rla
+	rla
+
+	ld b, 0
+	ld c, a
+
+	inc hl
+	inc hl
+	inc hl
+	dec de
+
+	call copyMemory
+
+	pop de
+	pop hl
 	dec hl
-.skipObstacle:
 	dec hl
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	ld [de], a
-	jr .loop
+	dec hl
+	dec hl
+	ret
