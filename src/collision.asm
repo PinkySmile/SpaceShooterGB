@@ -52,6 +52,7 @@ gameOver::
 gameOverEnd::
 
 go::
+    reset CHANNEL3_ON_OFF
 	ld hl, destruction
 	call playNoiseSound
 
@@ -79,7 +80,11 @@ go::
 	call copyMemory
 
 	reg LCD_CONTROL, LCD_BASE_CONTROL
+
+	ld hl, gameOverSFX
+	call playSound
 .loop:
+	call updateSound
 	reset INTERRUPT_REQUEST
 	halt
 	xor a

@@ -9,14 +9,15 @@ destruction::
 
 ;GO SFX Channel2
 gameOverSFX::
-    db $80, $80, $0C, $86, QUAVER * 4; DO 1
-    db $80, $80, $EF, $85, QUAVER * 4; SI 0
-    db $80, $80, $CD, $85, QUAVER * 4; LA# 0
-    db $80, $80, $AC, $85, QUAVER * 8; LA 0
-    db $80, $80, $AC, $85, $00; LA 0
+    db $80, $C0, $0C, $86, QUAVER * 4; DO 1
+    db $80, $C0, $EF, $85, QUAVER * 4; SI 0
+    db $80, $C0, $CD, $85, QUAVER * 4; LA# 0
+    db $80, $C0, $AC, $85, QUAVER * 8; LA 0
+    db $80, $00, $AC, $85, $00; LA 0
 
 wpRamWave::
     db $FF, $88, $00, $88, $FF, $88, $00, $88, $FF, $88, $00, $88, $FF, $88, $00, $88
+
 
 initWPRAM::
     ld hl, wpRamWave
