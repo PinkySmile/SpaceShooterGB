@@ -1,4 +1,4 @@
-;laser sound sfx
+;laser sound sfxOpera
 ;Channel1
 laser::
 	db $1F, $CF, $85, $D0, $87
@@ -17,7 +17,7 @@ destructionOn::
 
 ;channel4
 meteorDestruction::
-    db $00, $83, $66, $80
+    db $00, $D3, $65, $80
 
 ;GO SFX Channel2
 gameOverSFX::
