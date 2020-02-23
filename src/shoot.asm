@@ -36,6 +36,7 @@ deleteLaser::
 ; Registers:
 ;    af -> Not preserved
 checkCollisionsWithBoss::
+	ret
 	ld h, d
 	ld l, e
 	ld a, [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF]

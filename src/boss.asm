@@ -2,15 +2,33 @@ spawnBoss:
 	reg BOSS_STATUS, 1
 	reg BOSS_STRUCT + PLAYER_STRUCT_X_OFF, $3C
 	reg BOSS_STRUCT + PLAYER_STRUCT_Y_OFF, 0
+
+	ld hl, bossJingleBass
+	call playSound2
+
+	ld hl, MUSIC_2_START_PTR_H
+	ld a, bossBass >> 8
+	ld [hli], a
+	ld a, bossBass & $FF
+	ld [hl], a
+
+	ld hl, bossJingleMelody
+	call playSound
+
+	ld hl, MUSIC_START_PTR_H
+	ld a, bossMelody >> 8
+	ld [hli], a
+	ld a, bossMelody & $FF
+	ld [hl], a
 	ret
 
 bossAttack::
+	ld a, [BOSS_STATUS]
+	or a
+	ret z
 	;call random
 	;and %00001111
 	;call z, createObstacle
-
-	call updateBoss
-	ld a, [BOSS_STATUS]
 	cp $1
 	jr z, .moveLeft
 	cp $2
@@ -50,6 +68,7 @@ bossAttack::
 	jp nz, .end
 	reg BOSS_STATUS, 1
 .end:
+	call updateBoss
 	ret
 
 updateBoss::

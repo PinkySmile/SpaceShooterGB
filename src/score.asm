@@ -24,4 +24,16 @@ updateScore::
 	call writeNumber
 	ld a, [hld]
 	call writeNumber
+
+	; spawn the boss if the score is a multiple of 500 and the boss has not spawned yet
+	ld a, [BOSS_STATUS]
+	or a
+	ret nz
+
+	ld a, [hl]
+	and %11110000
+	ret nz
+	inc hl
+
+	call spawnBoss
 	ret

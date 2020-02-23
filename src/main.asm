@@ -127,7 +127,6 @@ run::
 	call drawBackground
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ld hl, $FF42
-	call spawnBoss
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
@@ -165,3 +164,7 @@ include "src/menu_bass.asm"
 include "src/menu_melody.asm"
 include "src/boss.asm"
 include "src/score.asm"
+include "src/boss_bass.asm"
+include "src/boss_melody.asm"
+include "src/boss_jingle_bass.asm"
+include "src/boss_jingle_melody.asm"
