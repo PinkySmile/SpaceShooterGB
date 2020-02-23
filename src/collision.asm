@@ -72,6 +72,7 @@ gameOverEnd::
 
 go::
 	reset CHANNEL3_ON_OFF
+	reset CHANNEL2_VOLUME
 	ld hl, destruction
 	call playNoiseSound
 
