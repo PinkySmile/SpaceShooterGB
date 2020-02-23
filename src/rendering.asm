@@ -60,9 +60,14 @@ loadSprites::
 	ld bc, asteroidsEnd - asteroids
 	call copyMemory
 
-	ld bc, $10
+	ld bc, $20
 	xor a
 	call fillMemory
+
+	; Load boss into VRAM
+	ld hl, boss
+	ld bc, bossEnd - boss
+	call copyMemory
 
 	ld de, $8800
 	ld hl, EpitechLogo
