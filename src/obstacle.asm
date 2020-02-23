@@ -52,6 +52,10 @@ createObstacle::
 	call random
 	and %000000111
 	add b
+	ld b, a
+	call random
+    and %000000011
+    add b
 	; check if it's too much on the right
 	;cp $16
 	;call c, setPosMinX
