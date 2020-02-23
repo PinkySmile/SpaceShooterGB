@@ -28,18 +28,12 @@ spawnBoss:
 	ret
 
 bossAttack::
-	ld a, [BOSS_STATUS]
-	or a
-	ret z
-
-	push af
 	ld a, [BOSS_DEATH_COUNTER]
 	or a
-	jr z, .skip
+	jr z, .endChangePalette
 	dec a
 	ld [BOSS_DEATH_COUNTER], a
-.skip:
-	ld a, [BGP]
+
 	bit 0, a
 	jr z, .normalPalette
 	reset BGP
@@ -48,7 +42,10 @@ bossAttack::
 	reg BGP, %11011000
 .endChangePalette:
 
-	pop af
+	ld a, [BOSS_STATUS]
+	or a
+	ret z
+
 	cp $1
 	jr z, .moveLeft
 	cp $2
@@ -110,7 +107,7 @@ bossAttack::
 	ld [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF], a
 .moveBackUp:
 	ld a, [OBP1]
-	bit 0, a
+	bit 1, a
 	jr z, .normalPalette2
 	reset OBP1
 	jr .endChangePalette2
@@ -230,7 +227,7 @@ killBoss::
 	call addScore
 	ld hl, destruction
 	call playNoiseSound
-	reg BOSS_DEATH_COUNTER, $6
-	reg ASTEROID_SPAWN_IN, $20
+	reg BOSS_DEATH_COUNTER, $20
+	reg ASTEROID_SPAWN_IN, $40
 	reset BOSS_STATUS
 	ret
