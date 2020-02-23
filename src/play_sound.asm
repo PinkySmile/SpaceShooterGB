@@ -7,6 +7,13 @@ laser::
 destruction::
 	db $00, $D5, $70, $80
 
+;channel4
+bam::
+    db $00, $95, $7D, $80
+
+destructionOn::
+    db $00, $47, $7B, $80
+
 ;GO SFX Channel2
 gameOverSFX::
     db $80, $00, $0C, $86, QUAVER * 4; NO SOUND
