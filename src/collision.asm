@@ -48,8 +48,9 @@ checkAxisX::
 
 	sub $16
 	cp b
-	call c, go
-	ret
+	ret nc
+	ld sp, $E000
+	jp go
 
 setPosMinY::
 	ld a, $8

@@ -34,6 +34,32 @@ deleteLaser::
 ; Return:
 ;    None
 ; Registers:
+;    af -> Not preserved
+checkCollisionsWithBoss::
+	ld h, d
+	ld l, e
+	ld a, [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF]
+	or a
+	ret nz
+
+	inc de
+	add $10
+	cp [hl]
+	ret c
+
+	push de
+	call deleteLaser
+	pop de
+	inc de
+	pop bc
+	jp updateLasers.skip
+
+; Collision between spaceship and asteroid
+; Params:
+;    de -> The address of the laser struct
+; Return:
+;    None
+; Registers:
 ;    hl -> Preserved
 ;	 de -> Preserved
 checkCollisionsWithLasers::
@@ -116,6 +142,9 @@ updateLasers::
 .loop:
 	push af
 	call checkCollisionsWithLasers
+	push hl
+	call checkCollisionsWithBoss
+	pop hl
 
 	inc de
 	ld a, [de]

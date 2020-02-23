@@ -22,7 +22,7 @@ lockup::
 main::
 	call init               ; Init
 	ld sp, $E000            ; Init stack
-	jp intro
+	;jp intro
 
 mainMenu::
 	ld hl, menuMelody
@@ -136,6 +136,7 @@ run::
 	dec [hl]
 
 	call checkCollisionSpaceshipAsteroid
+	call checkCollisionSpaceshipBoss
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
