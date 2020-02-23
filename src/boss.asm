@@ -36,7 +36,11 @@ bossAttack::
 	cp $3
 	jr z, .moveCenter
 	cp $4
-	jr z, .moveDown
+	jr z, .waitToBackUp
+	cp $5
+    jr z, .moveDown
+    cp $6
+    jr z, .moveBackUp
 	jr .end
 .moveLeft:
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_X_OFF
@@ -59,14 +63,38 @@ bossAttack::
 	cp [hl]
 	jp nz, .end
 	reg BOSS_STATUS, 4
+	; time before the spaceships goes down
+	ld a, $1E
+    ld [$C210], a
+.waitToBackUp:
+	ld hl, $C210
+	xor a
+	dec [hl]
+	jr nz, .end
+	reg BOSS_STATUS, 5
 .moveDown:
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_Y_OFF
 	inc [hl]
 	inc [hl]
-	xor a
+	inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+    inc [hl]
+	ld a, $F0
 	cp [hl]
 	jp nz, .end
-	reg BOSS_STATUS, 1
+	reg BOSS_STATUS, 6
+	ld a, $EE
+    ld [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF], a
+.moveBackUp:
+	ld hl, BOSS_STRUCT + PLAYER_STRUCT_Y_OFF
+    xor a
+    dec [hl]
+    cp [hl]
+    jp nz, .end
+    reg BOSS_STATUS, 1
 .end:
 	call updateBoss
 	ret
