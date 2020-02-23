@@ -240,8 +240,14 @@ intro::
 	cp $D0
 	jr nc, .moveBoss
 
+	cp $B0
+	jr nc, .dec
 	xor a
 	ld [INTRO_COUNTER], a
+	jr .skip
+.dec:
+	ld hl, INTRO_COUNTER
+	dec [hl]
 	jr .skip
 .moveBoss:
 	call moveBoss

@@ -12,15 +12,19 @@ checkCollisionSpaceshipAsteroid::
 	push af
 	ld a, [de]
 	inc de
+	inc a
+	inc a
 	ld b, a
-	add a, $10
+	add a, $C
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
 	cp [hl]
 	jr c, .noCollide
 
 	ld a, [de]
+	inc a
+	inc a
 	ld c, a
-	add a, $10
+	add a, $C
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	cp [hl]
 	jr c, .noCollide
