@@ -39,6 +39,7 @@ checkCollisionsWithLasers::
 	push hl
 	ld hl, OBSTACLES_ADDR
 .loop:
+	;ld b, b
 	inc hl
 
 	inc de
@@ -48,20 +49,30 @@ checkCollisionsWithLasers::
 
 	inc hl
 	inc hl
+	inc hl
 	dec de
 
 	ld a, l
+	cp $FF
+	jr z, .collided
 	cp $88
 	jr nz, .loop
 
 	pop hl
 	ret
+.collided:
+	pop hl
+	inc de
+	;inc de
+	pop bc
+	jr updateLasers.skip
 
 laserCollideY::
 	inc hl
 	add $16
 	cp b
 	call nc, laserCollideX
+	dec hl
 	ret
 
 laserCollideX::
@@ -73,18 +84,19 @@ laserCollideX::
 	ret c
 	sub $20
 	cp [hl]
-	call c, lazerCollided
+	call c, laserCollided
 	ret
 
-lazerCollided::
-	;push hl
-	;push de
-	;dec de
-	;ld h, d
-	;ld l, e
-	;call deleteLaser
-	;pop de
-	;pop hl
+laserCollided::
+	dec hl
+	dec hl
+	xor a
+	ld [hl], a
+	push de
+	ld b, b
+	call deleteLaser
+	pop de
+	ld l, $FD
 	ret
 
 updateLasers::
