@@ -1,10 +1,23 @@
 spawnBoss:
 	reg BOSS_STATUS, 1
-	reg BOSS_STRUCT + PLAYER_STRUCT_X_OFF, $3C
-	reg BOSS_STRUCT + PLAYER_STRUCT_Y_OFF, 0
+	ld hl, BOSS_STRUCT
+	ld a, $3C
+	ld [hli], a
+	xor a
+	ld [hli], a
+	ld a, $20
+	ld [hli], a
 	ret
 
 bossAttack::
+	ld a, [BOSS_DEATH_COUNTER]
+	bit 0, a
+	jr z, .normalPalette
+	reset BGP
+	jr .endChangePalette
+.normalPalette:
+	reg BGP, %11011000
+.endChangePalette:
 	;call random
 	;and %00001111
 	;call z, createObstacle
@@ -104,12 +117,14 @@ updateBoss::
 
 checkCollisionSpaceshipBoss::
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
+	ld b, a
 	add a, PLAYER_SIZE_X
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_X_OFF
 	cp [hl]
 	ret c
 
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF]
+	ld c, a
 	add a, PLAYER_SIZE_Y
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_Y_OFF
 	cp [hl]
@@ -117,15 +132,21 @@ checkCollisionSpaceshipBoss::
 
 	ld a, [BOSS_STRUCT + PLAYER_STRUCT_X_OFF]
 	add a, BOSS_SIZE_X
-	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
-	cp [hl]
+	cp b
 	ret c
 
 	ld a, [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF]
 	add a, BOSS_SIZE_Y
-	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
-	cp [hl]
+	cp c
 	ret c
 
 	ld sp, $E000
-	jp go
+	jp gameOver
+
+killBoss::
+	ld hl, destruction
+	call playNoiseSound
+	reg BOSS_DEATH_COUNTER, $6
+	reg ASTEROID_SPAWN_IN, $20
+	reset BOSS_STATUS
+	ret
