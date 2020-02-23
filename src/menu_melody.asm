@@ -234,4 +234,5 @@ menuMelody::
     db $80, $00, $20, $C4, $86, QUAVER * 2 ;SOL# 1
     db $80, $00, $20, $D6, $86, QUAVER * 2 ;LA 1
     db $80, $00, $20, $05, $87, QUAVER ;DO 2
+    db $80, $00, $00, $05, $87, QUAVER ;NO SOUND
 	db $80, $00, $00, $05, $86, $FF ;Loop
