@@ -97,6 +97,8 @@ run::
 	call playSound
 	ld hl, gameBass
 	call playSound2
+	ld hl, ASTEROID_SPAWN_IN
+	ld [hl], $FF
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	ld a, $44
 	ld [hli], a
@@ -104,6 +106,7 @@ run::
 	ld [hl], a
 	ei
 	reg BGP, %11011000
+
 	call waitVBLANK
 	reset LCD_CONTROL
 	call drawBackground
@@ -112,6 +115,7 @@ run::
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
+	call updateScore
 	ld hl, SCROLL_Y
 	dec [hl]
 
@@ -142,3 +146,4 @@ include "src/game_melody.asm"
 include "src/menu_bass.asm"
 include "src/menu_melody.asm"
 include "src/boss.asm"
+include "src/score.asm"

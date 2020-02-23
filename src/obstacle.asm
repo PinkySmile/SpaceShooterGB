@@ -8,6 +8,8 @@ spawnObstacles:
 	ret
 
 updateSpawnTimer::
+	ld de, 1
+	call addScore
 	call createObstacle
 	call random
 	and %00011111
@@ -49,20 +51,14 @@ createObstacle::
 	; x value
 	call random
 	and %01111111
-	ld b, a
+	add $8
 	; add some value to allow asteroids to be on up to the right side of the screen
-	call random
-	and %000000111
-	add b
-	ld b, a
-	call random
-	and %000000011
-	add b
-	; check if it's too much on the right
-	;cp $16
-	;call c, setPosMinX
 
 	ld [hli], a
+
+	call random
+	and %00000011
+	ld [hl], a
 	ret
 
 ; Update all obstacles
@@ -99,11 +95,33 @@ updateObstacles::
 	ld [de], a
 	inc de
 
+	; apply the speed to x
+    inc hl
+    ld a, [hl]
+    ld b, a
+    dec hl
+    ld a, [hl]
+    ld c, a
+    ld a, b
+
+    cp 2
+
+    ld b, a
+    ld a, c
+
+    jr c, .notAdd
+    sub b
+    sub b
+.notAdd:
+    add b
+    ld [hl], a
+
 	; x
 	ld a, [hli]
 	add a, $8
 	ld [de], a
 	inc de
+
 
 	ld a, ASTEROID_SPRITE_INDEX
 	ld [de], a

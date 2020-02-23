@@ -40,7 +40,6 @@ checkCollisionsWithLasers::
 	push hl
 	ld hl, OBSTACLES_ADDR
 .loop:
-	;ld b, b
 	inc hl
 
 	inc de
@@ -64,14 +63,13 @@ checkCollisionsWithLasers::
 .collided:
 	pop hl
 	inc de
-	;inc de
 	pop bc
 	jr updateLasers.skip
 
 laserCollideY::
+	add $10
+	cp [hl]
 	inc hl
-	add $16
-	cp b
 	call nc, laserCollideX
 	dec hl
 	ret
@@ -96,6 +94,8 @@ laserCollided::
 	push de
 	ld hl, meteorDestruction
 	call playNoiseSound
+	ld de, 5
+	call addScore
 	pop de
 	pop hl
 	ld l, $FD

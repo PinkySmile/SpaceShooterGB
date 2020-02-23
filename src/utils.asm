@@ -210,3 +210,20 @@ getKeys::
 	and a, $F
 	or b
 	ret
+
+
+writeNumber::
+    ld b, a
+
+    swap a
+    and a, $F
+    add a, $30
+    ld [de], a
+    inc de
+
+    ld a, b
+    and a, $F
+    add a, $30
+    ld [de], a
+    inc de
+    ret
