@@ -13,7 +13,16 @@ spawnObstacles:
 updateSpawnTimer::
 	ld de, 1
 	call addScore
+
+	ld b, 0
+
+	call random
+	and %01111111
+	add $8
+	ld c, a
+
 	call createObstacle
+
 	call random
 	and %00011111
 	inc a
@@ -21,12 +30,14 @@ updateSpawnTimer::
 
 ; Create a random obstacle
 ; Params:
-;    None
+;    b -> y position
+;	 c -> x position
 ; Return:
 ;    None
 ; Registers:
 ;    N/A
 createObstacle::
+	push bc
 	ld a,[NB_OBSTACLES]
 	cp 8
 	ret z
@@ -47,18 +58,16 @@ createObstacle::
 	inc a
 	ld [hli], a
 
-	; y value is set to 0 the obstacle must start at the top of the screen
-	xor a
+	pop bc
+	; y value
+	ld a, b
 	ld [hli], a
 
 	; x value
-	call random
-	and %01111111
-	add $8
-	; add some value to allow asteroids to be on up to the right side of the screen
-
+	ld a, c
 	ld [hli], a
 
+	; x speed
 	call random
 	and %00000011
 	ld [hl], a

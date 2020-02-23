@@ -26,9 +26,6 @@ bossAttack::
 	ld a, [BOSS_STATUS]
 	or a
 	ret z
-	;call random
-	;and %00001111
-	;call z, createObstacle
 	cp $1
 	jr z, .moveLeft
 	cp $2
@@ -97,6 +94,21 @@ bossAttack::
     reg BOSS_STATUS, 1
 .end:
 	call updateBoss
+
+	ld a, [BOSS_STATUS]
+	bit 2, a
+	ret nz
+	ld hl, BOSS_NEXT_ATTACK
+	dec [hl]
+	jp nz, .ret
+
+	ld [hl], $30
+	ld a, [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF]
+	ld b, a
+	ld a, [BOSS_STRUCT + PLAYER_STRUCT_X_OFF]
+	ld c, a
+	call createObstacle
+.ret:
 	ret
 
 updateBoss::
