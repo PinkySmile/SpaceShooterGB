@@ -29,6 +29,7 @@ spawnBoss:
 	; set the random for the bossgoesdown
 	call random
     and %01111111
+    add $78
     ld [$C211], a
 	ret
 
@@ -140,6 +141,7 @@ bossAttack::
 
     call random
     and %01111111
+    add $78
     ld [$C211], a
 
 	reg BOSS_STATUS, 1
