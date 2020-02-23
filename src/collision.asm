@@ -69,9 +69,17 @@ setPosMinX::
 gameOver::
 	db "GAME  OVER"
 gameOverEnd::
+retry::
+	db "START  RETRY"
+retryEnd::
+
+menu::
+	db "SELECT MENU"
+menuEnd::
 
 go::
 	reset CHANNEL3_ON_OFF
+	reset CHANNEL2_VOLUME
 	ld hl, destruction
 	call playNoiseSound
 
@@ -90,12 +98,17 @@ go::
 
 	ld hl, gameOver
 	ld bc, gameOverEnd - gameOver
-	ld de, $9965
+	ld de, $9925
 	call copyMemory
 
-	ld hl, pressStart
-	ld bc, pressStartEnd - pressStart
-	ld de, $99A4
+	ld hl, retry
+	ld bc, retryEnd - retry
+	ld de, $9984
+	call copyMemory
+
+	ld hl, menu
+	ld bc, menuEnd - menu
+	ld de, $99C4
 	call copyMemory
 
 	reg LCD_CONTROL, LCD_BASE_CONTROL
@@ -110,13 +123,10 @@ go::
 	xor a
 	call getKeys
 	bit 7, a
+	jr z, .continue
+	bit 6, a
 	jr nz, .loop
-
-	; erease the asteroids
-	ld de, $C01A
-	ld bc, 300
-	ld a, 0
-	call fillMemory
-	;restart
+ 	jp mainMenu
+.continue:
 	jp run
 

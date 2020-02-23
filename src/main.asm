@@ -93,6 +93,21 @@ mainMenu::
 
 ; Runs the main program
 run::
+	xor a
+
+	ld de, $C01A
+	ld bc, 300
+	ld a, 0
+	call fillMemory
+
+	ld hl, SCORE_REGISTER + 2
+	ld [NB_OBSTACLES], a
+	ld [NB_SHOOTS], a
+	ld [hl-], a
+	ld [hl-], a
+	inc a
+	ld [hl-], a
+
 	ld hl, gameMelody
 	call playSound
 	ld hl, gameBass
