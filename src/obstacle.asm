@@ -165,3 +165,15 @@ updateObstacles::
 	inc de
 	ld [de], a
 	jr .loop
+
+; Set the asteroid speed to 0 when hit by a laser
+; Params:
+;    hl the address of the asteroid to destroy
+; Return:
+;    None
+; Registers:
+;    N/A
+destroyAsteroidByLaser::
+	xor a
+	ld [hl], a
+	ret
