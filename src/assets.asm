@@ -41,3 +41,7 @@ JAMLettersEnd::
 logo::
 	incbin "assets/logo.fx"
 logoEnd::
+
+boss::
+	incbin "assets/boss.fx"
+bossEnd::

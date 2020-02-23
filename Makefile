@@ -24,7 +24,8 @@ SRCS = \
 IMGS = \
 	assets/asteroids.png \
 	assets/spaceship.png \
-	assets/logo.png
+	assets/logo.png \
+	assets/boss.png
 
 COMPRESSED_IMGS = \
 	assets/font.png \
