@@ -15,27 +15,14 @@ gameOverSFX::
     db $80, $80, $AC, $85, QUAVER * 8; LA 0
     db $80, $80, $AC, $85, $00; LA 0
 
-wpRam::
-    db $F0, $F0, $FF, $0F, $0F, $00, $F0, $F0, $FF, $0F, $0F, $00, $F0, $F0, $FF, $0F
+wpRamWave::
+    db $FF, $88, $00, $88, $FF, $88, $00, $88, $FF, $88, $00, $88, $FF, $88, $00, $88
 
 initWPRAM::
-	ld hl, WPRAM
-	ld c, 2
-	xor a
-.loop:
-	dec a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	inc a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	dec c
-	jr nz, .loop
-	ret
+    ld hl, wpRamWave
+    ld de, WPRAM
+    ld bc, 16
+    call copyMemory
 
 playChannel1Sound::
 	ld de, CHANNEL1_SWEEP
