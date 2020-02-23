@@ -11,8 +11,13 @@ destruction::
 bam::
     db $00, $95, $7D, $80
 
+;channel4
 destructionOn::
     db $00, $47, $7B, $80
+
+;channel4
+meteorDestruction::
+    db $00, $83, $66, $80
 
 ;GO SFX Channel2
 gameOverSFX::
