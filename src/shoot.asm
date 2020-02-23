@@ -93,7 +93,6 @@ laserCollided::
 	xor a
 	ld [hl], a
 	push de
-	ld b, b
 	call deleteLaser
 	pop de
 	ld l, $FD
