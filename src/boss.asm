@@ -47,9 +47,7 @@ bossAttack::
 .normalPalette:
 	reg BGP, %11011000
 .endChangePalette:
-	;call random
-	;and %00001111
-	;call z, createObstacle
+
 	pop af
 	cp $1
 	jr z, .moveLeft
@@ -127,6 +125,21 @@ bossAttack::
 	reg BOSS_STATUS, 1
 .end:
 	call updateBoss
+
+	ld a, [BOSS_STATUS]
+	bit 2, a
+	ret nz
+	ld hl, BOSS_NEXT_ATTACK
+	dec [hl]
+	jp nz, .ret
+
+	ld [hl], $30
+	ld a, [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF]
+	ld b, a
+	ld a, [BOSS_STRUCT + PLAYER_STRUCT_X_OFF]
+	ld c, a
+	call createObstacle
+.ret:
 	ret
 
 updateBoss::
@@ -208,11 +221,12 @@ checkCollisionSpaceshipBoss::
 	jp gameOver
 
 killBoss::
+	reg OBP1, ENNEMIES_PALETTE
 	ld hl, gameMelody
 	call playSound
 	ld hl, gameBass
 	call playSound2
-	ld de, 100
+	ld de, $100
 	call addScore
 	ld hl, destruction
 	call playNoiseSound
