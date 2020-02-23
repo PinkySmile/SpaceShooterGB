@@ -36,6 +36,10 @@ deleteLaser::
 ; Registers:
 ;    af -> Not preserved
 checkCollisionsWithBoss::
+	ld a, [BOSS_STATUS]
+	or a
+	ret z
+
 	push hl
 	push de
 

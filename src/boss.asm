@@ -252,7 +252,7 @@ killBoss::
 	call playSound
 	ld hl, gameBass
 	call playSound2
-	ld de, $100
+	ld de, $25
 	call addScore
 	ld hl, destruction
 	call playNoiseSound
