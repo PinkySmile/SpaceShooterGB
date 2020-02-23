@@ -96,7 +96,7 @@ laserCollided::
 	ld hl, meteorDestruction
 	call playNoiseSound
 	ld de, 5
-	call incScore
+	call addScore
 	pop de
 	pop hl
 	ld l, $FD
