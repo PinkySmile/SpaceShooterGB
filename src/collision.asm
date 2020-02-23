@@ -103,6 +103,7 @@ go::
 	ld hl, gameOverSFX
 	call playSound
 .loop:
+	call updateScore
 	call updateSound
 	reset INTERRUPT_REQUEST
 	halt
