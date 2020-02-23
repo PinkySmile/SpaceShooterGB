@@ -53,8 +53,8 @@ init::
 	reg OBP0, SPACESHIP_PALETTE
 	reg OBP1, ENNEMIES_PALETTE
 
-	reg WY, 130
-	reg WX, 120
+	reg WY, $88
+	reg WX, $80
 
 	call loadSprites
 	call DMA

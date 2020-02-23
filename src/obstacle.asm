@@ -1,5 +1,8 @@
 ; Spawn an obstacle but not always
 spawnObstacles:
+	ld a,[BOSS_STATUS]
+	or a
+	ret nz
 	ld a, [ASTEROID_SPAWN_IN]
 	or a
 	call z, updateSpawnTimer

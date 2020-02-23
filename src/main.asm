@@ -112,6 +112,7 @@ run::
 	call drawBackground
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ld hl, $FF42
+	call spawnBoss
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
@@ -128,6 +129,7 @@ run::
 	call updateSound
 	call updateSound2
 	call spawnObstacles
+	call bossAttack
 	jr .gameLoop
 
 include "src/init.asm"
