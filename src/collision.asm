@@ -6,58 +6,43 @@
 ; Registers:
 ;	N/A
 checkCollisionSpaceshipAsteroid::
-	ld hl, OBSTACLES_ADDR + 1
+	ld de, OBSTACLES_ADDR + 1
+	ld a, [NB_OBSTACLES]
 .loop:
-	ld a, [hli]
+	push af
+	ld a, [de]
+	inc de
 	ld b, a
+	add a, $10
+	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
+	cp [hl]
+	jr c, .noCollide
+
+	ld a, [de]
+	ld c, a
+	add a, $10
+	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
+	cp [hl]
+	jr c, .noCollide
+
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF]
-	; check if it overflows
-	cp $8
-	call c, setPosMinY
-
-	sub $8
-	cp b ; check if the top point
-	call c, checkAxisY
-
-	ld a, l
-	cp $88
-	jr nz, .loop
-	ret
-
-checkAxisY::
-	add $16
+	add a, PLAYER_SIZE_X
 	cp b
-	call nc, checkAxisX
-	call z, checkAxisX
-	ret
+	jr c, .noCollide
 
-debug::
-	ld b, b
-	ret
-
-checkAxisX::
-	ld a, [hl]
-	ld b, a
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
-	add $8
-	cp b
-	ret c
-	; check if it overflows
-	cp $16
-	call c, setPosMinX
+	add a, PLAYER_SIZE_Y
+	cp c
+	jr c, .noCollide
 
-	sub $16
-	cp b
-	ret nc
-	ld sp, $E000
 	jp gameOver
-
-setPosMinY::
-	ld a, $8
-	ret
-
-setPosMinX::
-	ld a, $16
+.noCollide:
+	inc de
+	inc de
+	inc de
+	pop af
+	dec a
+	jr nz, .loop
 	ret
 
 ; When the spaceship is hitted

@@ -70,8 +70,8 @@ checkCollisionsWithBoss::
 
 	pop de
 	inc de
-        call deleteLaser
-        push de
+	call deleteLaser
+	push de
 
 	ld a, [BOSS_STATUS]
 	cp $6
