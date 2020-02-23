@@ -175,6 +175,7 @@ moveBoss::
 	cp $A0
 	jr z, .finalExplode
 	jr nc, .fade
+	reg BGP, %00100111
 	jr .end
 .finalExplode:
 	ld hl, BGP
@@ -183,7 +184,8 @@ moveBoss::
 	add 0
 	rr [hl]
 	ld hl, destructionOn
-	jr .exp
+	call playNoiseSound
+	jr .end
 .explode2:
 	ld hl, meteorDestruction
 	jr .exp
@@ -196,8 +198,15 @@ moveBoss::
 .fade:
 	ld hl, INTRO_COUNTER
 	dec [hl]
-.fadeOut:
-	ld a, [BGP]
+	ld a, [hl]
+	and a, $F
+	jr nz, .end
+
+	ld hl, BGP
+	add 0
+	rr [hl]
+	add 0
+	rr [hl]
 
 .end:
 	call updateBoss
@@ -214,6 +223,7 @@ initBoss::
 
 intro::
 	ei
+	reg BGP, %00011011
 	reg INTRO_COUNTER, $FF
 	call initPlayer
 	call initBoss
@@ -230,8 +240,8 @@ intro::
 	cp $D0
 	jr nc, .moveBoss
 
-	ld hl, INTRO_COUNTER
-	dec [hl]
+	xor a
+	ld [INTRO_COUNTER], a
 	jr .skip
 .moveBoss:
 	call moveBoss
@@ -240,10 +250,10 @@ intro::
 	call movePlayer
 .skip:
 	halt
-	reg BGP, %00100111
 	pop af
 	or a
 	jr nz, .loop
+
 	call waitVBLANK
 	reset LCD_CONTROL
 	call loadSprites
