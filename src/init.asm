@@ -39,6 +39,12 @@ init::
 	ld de, $C000
 	call fillMemory
 
+	ld hl, $FF24
+	ld a, $77
+	ld [hli], a
+	ld a, $FF
+	ld [hli], a
+
 	ld bc, initDMA_end - initDMA
 	ld de, $FF80
 	ld hl, initDMA
