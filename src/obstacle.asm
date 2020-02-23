@@ -47,6 +47,19 @@ createObstacle::
 	; x value
 	call random
 	and %01111111
+	ld b, a
+	; add some value to allow asteroids to be on up to the right side of the screen
+	call random
+	and %000000111
+	add b
+	ld b, a
+	call random
+    and %000000011
+    add b
+	; check if it's too much on the right
+	;cp $16
+	;call c, setPosMinX
+
 	ld [hli], a
 
 	ld hl, OBSTACLES_ADDR
@@ -152,3 +165,15 @@ updateObstacles::
 	inc de
 	ld [de], a
 	jr .loop
+
+; Set the asteroid speed to 0 when hit by a laser
+; Params:
+;    hl the address of the asteroid to destroy
+; Return:
+;    None
+; Registers:
+;    N/A
+destroyAsteroidByLaser::
+	xor a
+	ld [hl], a
+	ret

@@ -46,60 +46,6 @@ random::
 	pop hl
 	ret
 
-; Puts randm values in VRAM
-; Params:
-;    None
-; Return:
-;    None
-; Registers:
-;    af -> Not preserved
-;    bc -> Preserved
-;    de -> Preserved
-;    hl -> Not preserved
-trashVRAM::
-	call waitVBLANK
-	reset LCD_CONTROL
-	ld hl, $9FFF
-.start:
-	call random
-	ld [hl-], a
-	bit 7, h
-	jr nz, .start
-	ret
-
-; Loads the font into VRAM
-; Params:
-;    None
-; Return:
-;    None
-; Registers:
-;    af -> Preserved
-;    bc -> Preserved
-;    de -> Preserved
-;    hl -> Preserved
-loadTextAsset::
-	; Save registers
-	push af
-	push hl
-	push bc
-	push de
-
-	call waitVBLANK
-	; Disable LCD
-	reset LCD_CONTROL
-	ld hl, textAssets
-	ld bc, textAssetsEnd - textAssets
-	ld de, VRAM_START
-	; Copy text font info VRAM
-	call uncompress
-
-	; Restore registers
-	pop de
-	pop bc
-	pop hl
-	pop af
-	ret
-
 ; Copies a chunk of memory into another
 ; Params:
 ;    bc -> The length of the chunk to copy
@@ -195,6 +141,8 @@ displayText::
 	reset LCD_CONTROL
 	ld de, VRAM_BG_START
 	call copyMemory
+	reset SCROLL_X
+	reset SCROLL_Y
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ret
 

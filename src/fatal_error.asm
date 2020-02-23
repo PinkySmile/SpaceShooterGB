@@ -1,5 +1,5 @@
 fatalErrorText::
-	db "PC 38H"
+	db "FATAL ERROR  PC 38H"
 fatalErrorTextEnd::
 
 pcAt38::
@@ -16,8 +16,6 @@ pcAt38::
 ; Registers:
 ;    N/A
 dispError::
-	; Load text fonts
-	call loadTextAsset
 	; Display given text
 	call displayText
 	; Play a sound and lock CPU
