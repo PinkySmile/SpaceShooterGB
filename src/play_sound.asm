@@ -14,6 +14,9 @@ bam::
 destructionOn::
     db $00, $47, $7B, $80
 
+meteorDestruction::
+    db $00, $83, $66, $80
+
 ;GO SFX Channel2
 gameOverSFX::
     db $80, $00, $0C, $86, QUAVER * 4; NO SOUND
