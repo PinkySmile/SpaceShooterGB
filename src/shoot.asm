@@ -40,7 +40,6 @@ checkCollisionsWithLasers::
 	push hl
 	ld hl, OBSTACLES_ADDR
 .loop:
-	;ld b, b
 	inc hl
 
 	inc de
@@ -68,9 +67,9 @@ checkCollisionsWithLasers::
 	jr updateLasers.skip
 
 laserCollideY::
+	add $10
+	cp [hl]
 	inc hl
-	add $16
-	cp b
 	call nc, laserCollideX
 	dec hl
 	ret
