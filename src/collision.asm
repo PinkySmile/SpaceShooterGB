@@ -11,9 +11,10 @@ checkCollisionSpaceshipAsteroid::
 	ld a, [hli]
 	ld b, a
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF]
-	sub $B
+	sub $8
 	cp b ; check if the top point
 	call c, checkAxisY
+	;all z, checkAxisY
 
 	ld a, l
 	cp $88
@@ -24,21 +25,29 @@ checkAxisY::
 	add $16
 	cp b
 	call nc, checkAxisX
+	call z, checkAxisX
 	ret
 
 checkAxisX::
+	;ld b, b
 	ld a, [hl]
 	ld b, a
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
-	add $B
+	add $8
 	cp b
 	ret c
+	; check if it overflows
+	cp $16
+	call c, setPosMinX
 	sub $16
 	cp b
 	call c, go
+	call z, go
 	ret
 
-
+setPosMinX::
+	sub $16
+	ret
 
 ; When the spaceship is hitted
 ; Params:
