@@ -21,11 +21,6 @@ makeEpitechBackground::
 	ret
 
 initPlayer::
-	ld de, $8010 + (EpitechLogoEnd - EpitechLogo) * 2 + $10
-	ld hl, spaceship
-	ld bc, spaceshipEnd - spaceship
-	call copyMemory
-
 	ld hl, OAM_SRC_START << 8
 
 	reg PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF, $24
@@ -97,7 +92,7 @@ checkLaser::
 	ld b, a
 	ld a, [hli]
 	ld c, a
-	ld hl, (OAM_SRC_START << 8) + SPRITE_SIZE * 12
+	ld hl, (OAM_SRC_START << 8) + SPRITE_SIZE * 16
 	ld a, [INTRO_COUNTER]
 	inc a
 	cpl
@@ -153,27 +148,99 @@ checkLaser::
 	jr nz, .loop
 	ret
 
+moveBoss::
+	ld a, $10
+	ld hl, BOSS_STRUCT + PLAYER_STRUCT_Y_OFF
+	cp [hl]
+	jr nz, .down
+	jr .skip
+.down:
+	inc [hl]
+.skip:
+	dec hl
+	inc [hl]
+	ld a, [hl]
+	cp $20
+	jr z, .explode
+	cp $40
+	jr z, .explode2
+	cp $60
+	jr z, .explode
+	cp $70
+	jr z, .explode
+	cp $80
+	jr z, .explode2
+	cp $98
+	jr z, .explode
+	cp $A0
+	jr z, .finalExplode
+	jr nc, .fade
+	jr .end
+.finalExplode:
+	ld hl, BGP
+	add 0
+	rr [hl]
+	add 0
+	rr [hl]
+	ld hl, destructionOn
+	jr .exp
+.explode2:
+	ld hl, meteorDestruction
+	jr .exp
+.explode:
+	ld hl, destruction
+.exp:
+	reg BGP, %00000000
+	call playNoiseSound
+	jr .end
+.fade:
+	ld hl, INTRO_COUNTER
+	dec [hl]
+.fadeOut:
+	ld a, [BGP]
+
+.end:
+	call updateBoss
+	ret
+
+initBoss::
+	ld hl, BOSS_STRUCT
+	ld a, $0
+	ld [hli], a
+	ld a, $D8
+	ld [hli], a
+	call updateBoss
+	ret
+
 intro::
 	ei
-	reg BGP, %00100111
 	reg INTRO_COUNTER, $FF
 	call initPlayer
+	call initBoss
 	call makeEpitechBackground
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 .loop:
 	reset INTERRUPT_REQUEST
 	ld a, [INTRO_COUNTER]
+
 	push af
 	cp $FC
-	call nc, movePlayer
-	pop af
-	push af
-	cp $FC
-	jr nc, .skip
+	jr nc, .move
+
+	cp $D0
+	jr nc, .moveBoss
+
 	ld hl, INTRO_COUNTER
 	dec [hl]
+	jr .skip
+.moveBoss:
+	call moveBoss
+	jr .skip
+.move:
+	call movePlayer
 .skip:
 	halt
+	reg BGP, %00100111
 	pop af
 	or a
 	jr nz, .loop
@@ -182,4 +249,6 @@ intro::
 	call loadSprites
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	di
+	ld hl, bam
+	call playNoiseSound
 	jp mainMenu

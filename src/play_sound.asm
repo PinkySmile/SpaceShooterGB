@@ -13,7 +13,7 @@ bam::
 
 ;channel4
 destructionOn::
-    db $00, $47, $7B, $80
+    db $00, $4F, $7B, $80
 
 ;channel4
 meteorDestruction::
