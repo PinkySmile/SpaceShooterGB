@@ -11,7 +11,11 @@ checkCollisionSpaceshipAsteroid::
 	ld a, [hli]
 	ld b, a
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF]
-	sub $B
+	; check if it overflows
+	cp $8
+	call c, setPosMinY
+
+	sub $8
 	cp b ; check if the top point
 	call c, checkAxisY
 
@@ -24,21 +28,36 @@ checkAxisY::
 	add $16
 	cp b
 	call nc, checkAxisX
+	call z, checkAxisX
+	ret
+
+debug::
+	ld b, b
 	ret
 
 checkAxisX::
 	ld a, [hl]
 	ld b, a
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
-	add $B
+	add $8
 	cp b
 	ret c
+	; check if it overflows
+	cp $16
+	call c, setPosMinX
+
 	sub $16
 	cp b
 	call c, go
 	ret
 
+setPosMinY::
+	ld a, $8
+	ret
 
+setPosMinX::
+	ld a, $16
+	ret
 
 ; When the spaceship is hitted
 ; Params:
@@ -52,6 +71,7 @@ gameOver::
 gameOverEnd::
 
 go::
+    reset CHANNEL3_ON_OFF
 	ld hl, destruction
 	call playNoiseSound
 
@@ -79,7 +99,11 @@ go::
 	call copyMemory
 
 	reg LCD_CONTROL, LCD_BASE_CONTROL
+
+	ld hl, gameOverSFX
+	call playSound
 .loop:
+	call updateSound
 	reset INTERRUPT_REQUEST
 	halt
 	xor a
