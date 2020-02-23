@@ -104,6 +104,7 @@ run::
 	ld [hl], a
 	ei
 	reg BGP, %11011000
+
 	call waitVBLANK
 	reset LCD_CONTROL
 	call drawBackground
@@ -112,6 +113,7 @@ run::
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
+	call updateScore
 	ld hl, SCROLL_Y
 	dec [hl]
 
@@ -141,3 +143,4 @@ include "src/game_bass.asm"
 include "src/game_melody.asm"
 include "src/menu_bass.asm"
 include "src/menu_melody.asm"
+include "src/score.asm"

@@ -64,7 +64,6 @@ checkCollisionsWithLasers::
 .collided:
 	pop hl
 	inc de
-	;inc de
 	pop bc
 	jr updateLasers.skip
 
@@ -96,6 +95,8 @@ laserCollided::
 	push de
 	ld hl, meteorDestruction
 	call playNoiseSound
+	ld de, 5
+	call incScore
 	pop de
 	pop hl
 	ld l, $FD
