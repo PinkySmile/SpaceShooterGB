@@ -1,4 +1,4 @@
-SECTION "Assets", ROMX[$7000], BANK[1]
+SECTION "Assets", ROMX[$6800], BANK[1]
 
 ; The fonts used.
 textAssets::
@@ -37,3 +37,7 @@ JAMLetters::
  	incbin "assets/biga.cfx"
  	incbin "assets/bigm.cfx"
 JAMLettersEnd::
+
+logo::
+	incbin "assets/logo.fx"
+logoEnd::

@@ -1,10 +1,10 @@
 ; Collision between spaceship and asteroid
 ; Params:
-;    None
+;	None
 ; Return:
-;    None
+;	None
 ; Registers:
-;    N/A
+;	N/A
 checkCollisionSpaceshipAsteroid::
 	ld hl, OBSTACLES_ADDR + 1
 .loop:
@@ -51,11 +51,11 @@ setPosMinX::
 
 ; When the spaceship is hitted
 ; Params:
-;    None
+;	None
 ; Return:
-;    None
+;	None
 ; Registers:
-;    N/A
+;	N/A
 gameOver::
 	db "GAME  OVER"
 gameOverEnd::
@@ -70,32 +70,37 @@ go::
 	ld [$FF42], a
 	ld [$FF43], a
 
-    reset LCD_CONTROL
-    reg BGP, %11011000
-    ld de, $9800
-    ld bc, $800
-    ld a, 1
-    call fillMemory
+	reset LCD_CONTROL
+	reg BGP, %11011000
+	ld de, $9800
+	ld bc, $800
+	ld a, 1
+	call fillMemory
 
-    ld hl, gameOver
-    ld bc, gameOverEnd - gameOver
-    ld de, $9984
-    call copyMemory
+	ld hl, gameOver
+	ld bc, gameOverEnd - gameOver
+	ld de, $9965
+	call copyMemory
 
-    reg LCD_CONTROL, LCD_BASE_CONTROL
+	ld hl, pressStart
+	ld bc, pressStartEnd - pressStart
+	ld de, $99A4
+	call copyMemory
+
+	reg LCD_CONTROL, LCD_BASE_CONTROL
 .loop:
-    reset INTERRUPT_REQUEST
-    halt
-    xor a
-    call getKeys
-    bit 7, a
-    jr nz, .loop
+	reset INTERRUPT_REQUEST
+	halt
+	xor a
+	call getKeys
+	bit 7, a
+	jr nz, .loop
 
 	; erease the asteroids
-    ld de, $C01A
-    ld bc, 300
-    ld a, 0
-    call fillMemory
-    ;restart
+	ld de, $C01A
+	ld bc, 300
+	ld a, 0
+	call fillMemory
+	;restart
 	jp run
 

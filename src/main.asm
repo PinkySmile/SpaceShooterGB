@@ -30,21 +30,41 @@ mainMenu::
 	ld hl, menuBass
 	call playSound
 
-	ld de, OAM_SRC_START << 8
-	ld bc, $A0
-	xor a
-	call fillMemory
-
 	call waitVBLANK
 	reset LCD_CONTROL
 	call DMA
 	reg BGP, %11011000
 	reg SHOOT_COOLDOWN, 30
 
+	ld de, $8800
+	ld hl, logo
+	ld bc, logoEnd - logo
+	call copyMemory
+
+	ld de, OAM_SRC_START << 8
+	ld bc, $A0
+	xor a
+	call fillMemory
+
 	ld de, $9800
 	ld bc, $800
 	ld a, 1
 	call fillMemory
+
+	ld hl, $9802
+	ld d, $8
+	ld bc, $20 - $10
+	ld a, $80
+.bgLoop:
+	ld e, $10
+.bgCopyLoop:
+	ld [hli], a
+	inc a
+	dec e
+	jr nz, .bgCopyLoop
+	add hl, bc
+	dec d
+	jr nz, .bgLoop
 
 	ld hl, pressStart
 	ld bc, pressStartEnd - pressStart
