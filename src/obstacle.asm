@@ -47,6 +47,15 @@ createObstacle::
 	; x value
 	call random
 	and %01111111
+	ld b, a
+	; add some value to allow asteroids to be on up to the right side of the screen
+	call random
+	and %000000111
+	add b
+	; check if it's too much on the right
+	;cp $16
+	;call c, setPosMinX
+
 	ld [hli], a
 
 	ld hl, OBSTACLES_ADDR
