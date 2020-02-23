@@ -5,7 +5,6 @@ spawnBoss:
 	ret
 
 bossAttack::
-	;call collideWithPlayer
 	;call random
 	;and %00001111
 	;call z, createObstacle
