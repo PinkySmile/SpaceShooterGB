@@ -94,10 +94,8 @@ mainMenu::
 ; Runs the main program
 run::
 	xor a
-
 	ld de, $C01A
 	ld bc, 300
-	ld a, 0
 	call fillMemory
 
 	ld hl, SCORE_REGISTER + 2
@@ -105,8 +103,9 @@ run::
 	ld [NB_SHOOTS], a
 	ld [hl-], a
 	ld [hl-], a
-	inc a
 	ld [hl-], a
+	reg DISABLE_BOSS, 1
+
 
 	ld hl, gameMelody
 	call playSound
