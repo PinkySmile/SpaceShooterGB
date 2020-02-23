@@ -97,6 +97,8 @@ run::
 	call playSound
 	ld hl, gameBass
 	call playSound2
+	ld hl, ASTEROID_SPAWN_IN
+	ld [hl], $FF
 	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
 	ld a, $44
 	ld [hli], a
