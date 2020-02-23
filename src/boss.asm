@@ -155,7 +155,7 @@ bossAttack::
 	dec [hl]
 	jp nz, .ret
 
-	ld [hl], $25
+	ld [hl], $15
 	ld a, [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF]
 	ld b, a
 	ld a, [BOSS_STRUCT + PLAYER_STRUCT_X_OFF]
