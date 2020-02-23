@@ -102,3 +102,31 @@ updateBoss::
 	ld a, $10
 	ld [hl], a
 	ret
+
+checkCollisionSpaceshipBoss::
+	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
+	add a, PLAYER_SIZE_X
+	ld hl, BOSS_STRUCT + PLAYER_STRUCT_X_OFF
+	cp [hl]
+	ret c
+
+	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF]
+	add a, PLAYER_SIZE_Y
+	ld hl, BOSS_STRUCT + PLAYER_STRUCT_Y_OFF
+	cp [hl]
+	ret c
+
+	ld a, [BOSS_STRUCT + PLAYER_STRUCT_X_OFF]
+	add a, BOSS_SIZE_X
+	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF
+	cp [hl]
+	ret c
+
+	ld a, [BOSS_STRUCT + PLAYER_STRUCT_Y_OFF]
+	add a, BOSS_SIZE_Y
+	ld hl, PLAYER1_STRUCT + PLAYER_STRUCT_Y_OFF
+	cp [hl]
+	ret c
+
+	ld sp, $E000
+	jp go

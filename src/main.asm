@@ -136,6 +136,7 @@ run::
 	dec [hl]
 
 	call checkCollisionSpaceshipAsteroid
+	call checkCollisionSpaceshipBoss
 	call executePlayerActions
 	call updateRegisters
 	call updatePlayer
