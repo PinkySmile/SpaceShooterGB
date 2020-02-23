@@ -13,3 +13,4 @@ bossJingleBass::
     db $80, $00, $40, $15, $81, QUAVER ;RE B
     db $80, $00, $40, $94, $80, QUAVER ;DO# B
     db $80, $00, $40, $20, $80, QUAVER * 4;DO B
+    db $80, $00, $00, $17, $84, $00 ;DO 0

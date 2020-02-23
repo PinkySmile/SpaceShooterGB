@@ -30,3 +30,4 @@ bossJingleMelody::
     db $80, $80, $0C, $86, QUAVER / 2 ;DO 1
     db $80, $80, $EF, $85, QUAVER / 2 ;SI 0
     db $80, $80, $EF, $85, QUAVER * 3 + QUAVER / 2 ;SI 0
+    db $80, $00, $EF, $85, $00 ;Stop
