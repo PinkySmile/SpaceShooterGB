@@ -8,6 +8,8 @@ spawnObstacles:
 	ret
 
 updateSpawnTimer::
+	ld de, 1
+	call addScore
 	call createObstacle
 	call random
 	and %00011111
