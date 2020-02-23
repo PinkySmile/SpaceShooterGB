@@ -49,20 +49,16 @@ createObstacle::
 	; x value
 	call random
 	and %01111111
-	ld b, a
 	; add some value to allow asteroids to be on up to the right side of the screen
-	call random
-	and %000000111
-	add b
-	ld b, a
-	call random
-	and %000000011
-	add b
 	; check if it's too much on the right
 	;cp $16
 	;call c, setPosMinX
 
 	ld [hli], a
+
+	call random
+	and %01111111
+	ld [hl], a
 	ret
 
 ; Update all obstacles
@@ -98,6 +94,16 @@ updateObstacles::
 	add $10
 	ld [de], a
 	inc de
+
+	; apply the speed to x
+    ;ld a, [hli]
+    ;ld b, a
+    ;ld a, [hl]
+    ;ld c, a
+    ;ld a, b
+    ;add c
+    ;ld [hl], a
+    ;dec hl
 
 	; x
 	ld a, [hli]
