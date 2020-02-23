@@ -215,7 +215,7 @@ updateBoss::
 checkCollisionSpaceshipBoss::
 	ld a, [BOSS_STATUS]
 	or a
-	ret c
+	ret z
 
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
 	ld b, a
