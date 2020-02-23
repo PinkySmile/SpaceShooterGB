@@ -48,7 +48,7 @@ checkAxisX::
 
 	sub $16
 	cp b
-	call c, gom
+	call c, go
 	ret
 
 setPosMinY::
