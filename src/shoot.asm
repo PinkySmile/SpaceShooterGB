@@ -92,6 +92,10 @@ laserCollided::
 	dec hl
 	call deleteObstacle
 	call deleteLaser
+	push hl
+	ld hl, meteorDestruction
+	call playNoiseSound
+	pop hl
 	ld l, $FD
 	ret
 
