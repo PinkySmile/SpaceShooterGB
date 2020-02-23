@@ -93,6 +93,7 @@ mainMenu::
 
 ; Runs the main program
 run::
+	reset BOSS_STATUS
 	xor a
 	ld de, $C01A
 	ld bc, 300
@@ -105,7 +106,6 @@ run::
 	ld [hl-], a
 	ld [hl-], a
 	reg DISABLE_BOSS, 1
-
 
 	ld hl, gameMelody
 	call playSound

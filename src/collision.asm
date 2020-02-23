@@ -50,7 +50,7 @@ checkAxisX::
 	cp b
 	ret nc
 	ld sp, $E000
-	jp go
+	jp gameOver
 
 setPosMinY::
 	ld a, $8
@@ -67,9 +67,9 @@ setPosMinX::
 ;	None
 ; Registers:
 ;	N/A
-gameOver::
+gameOverText::
 	db "GAME  OVER"
-gameOverEnd::
+gameOverTextEnd::
 retry::
 	db "START  RETRY"
 retryEnd::
@@ -78,7 +78,7 @@ menu::
 	db "SELECT MENU"
 menuEnd::
 
-go::
+gameOver::
 	reset CHANNEL3_ON_OFF
 	reset CHANNEL2_VOLUME
 	ld hl, destruction
@@ -97,8 +97,8 @@ go::
 	ld a, 1
 	call fillMemory
 
-	ld hl, gameOver
-	ld bc, gameOverEnd - gameOver
+	ld hl, gameOverText
+	ld bc, gameOverTextEnd - gameOverText
 	ld de, $9925
 	call copyMemory
 
