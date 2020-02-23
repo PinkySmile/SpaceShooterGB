@@ -22,7 +22,7 @@ lockup::
 main::
 	call init               ; Init
 	ld sp, $E000            ; Init stack
-	;jp intro
+	jp intro
 
 mainMenu::
 	ld hl, menuMelody
@@ -93,11 +93,10 @@ mainMenu::
 
 ; Runs the main program
 run::
+	reset BOSS_STATUS
 	xor a
-
 	ld de, $C01A
 	ld bc, 300
-	ld a, 0
 	call fillMemory
 
 	ld hl, SCORE_REGISTER + 2
@@ -105,8 +104,8 @@ run::
 	ld [NB_SHOOTS], a
 	ld [hl-], a
 	ld [hl-], a
-	inc a
 	ld [hl-], a
+	reg DISABLE_BOSS, 1
 
 	ld hl, gameMelody
 	call playSound
@@ -127,7 +126,6 @@ run::
 	call drawBackground
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	ld hl, $FF42
-	call spawnBoss
 .gameLoop:
 	reset INTERRUPT_REQUEST
 	halt
@@ -165,3 +163,7 @@ include "src/menu_bass.asm"
 include "src/menu_melody.asm"
 include "src/boss.asm"
 include "src/score.asm"
+include "src/boss_bass.asm"
+include "src/boss_melody.asm"
+include "src/boss_jingle_bass.asm"
+include "src/boss_jingle_melody.asm"

@@ -36,7 +36,6 @@ deleteLaser::
 ; Registers:
 ;    af -> Not preserved
 checkCollisionsWithBoss::
-
 	push hl
 	push de
 
@@ -75,7 +74,7 @@ checkCollisionsWithBoss::
         push de
 
 	ld a, [BOSS_STATUS]
-	cp $5
+	cp $6
 	ld a, 1
 	pop de
 	pop hl

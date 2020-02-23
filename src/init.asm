@@ -54,7 +54,7 @@ init::
 	reg OBP1, ENNEMIES_PALETTE
 
 	reg WY, $88
-	reg WX, $80
+	reg WX, $78
 
 	call loadSprites
 	call DMA
