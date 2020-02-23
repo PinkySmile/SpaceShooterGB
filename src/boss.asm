@@ -20,6 +20,11 @@ spawnBoss:
 	ld [hli], a
 	ld a, bossMelody & $FF
 	ld [hl], a
+
+	; set the random for the bossgoesdown
+	call random
+    and %01111111
+    ld [$C211], a
 	ret
 
 bossAttack::
@@ -34,7 +39,7 @@ bossAttack::
 	cp $2
 	jr z, .moveRight
 	cp $3
-	jr z, .moveCenter
+	jr z, .timeBeforeGoesDown
 	cp $4
 	jr z, .waitToBackUp
 	cp $5
@@ -44,28 +49,41 @@ bossAttack::
 	jr .end
 .moveLeft:
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_X_OFF
-	dec [hl]
+
+	ld a, [$C211]
+	dec a
+	ld [$C211], a
+	ld b, a
 	xor a
+	cp b
+	jp z, .timeBeforeGoesDown
+
+	dec [hl]
 	cp [hl]
 	jp nz, .end
 	reg BOSS_STATUS, 2
 .moveRight:
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_X_OFF
+
+	ld a, [$C211]
+    dec a
+    ld [$C211], a
+    ld b, a
+    xor a
+    cp b
+    jp z, .timeBeforeGoesDown
+
 	inc [hl]
 	ld a, $80
 	cp [hl]
 	jp nz, .end
-	reg BOSS_STATUS, 3
-.moveCenter:
-	ld hl, BOSS_STRUCT + PLAYER_STRUCT_X_OFF
-	dec [hl]
-	ld a, $3C
-	cp [hl]
-	jp nz, .end
-	reg BOSS_STATUS, 4
+	reg BOSS_STATUS, 1
+
+.timeBeforeGoesDown:
 	; time before the spaceships goes down
 	ld a, $1E
     ld [$C210], a
+    reg BOSS_STATUS, 4
 .waitToBackUp:
 	ld hl, $C210
 	xor a
@@ -94,6 +112,11 @@ bossAttack::
     dec [hl]
     cp [hl]
     jp nz, .end
+
+    call random
+    and %01111111
+    ld [$C211], a
+
     reg BOSS_STATUS, 1
 .end:
 	call updateBoss
