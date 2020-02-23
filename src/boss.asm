@@ -213,6 +213,10 @@ updateBoss::
 	ret
 
 checkCollisionSpaceshipBoss::
+	ld a, [BOSS_STATUS]
+	or a
+	ret c
+
 	ld a, [PLAYER1_STRUCT + PLAYER_STRUCT_X_OFF]
 	ld b, a
 	add a, PLAYER_SIZE_X
