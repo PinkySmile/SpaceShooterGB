@@ -37,10 +37,11 @@ updateSpawnTimer::
 ; Registers:
 ;    N/A
 createObstacle::
-	push bc
 	ld a,[NB_OBSTACLES]
 	cp 8
 	ret z
+
+	push bc
 	ld b, 0
 	ld c, a
 	add 0
