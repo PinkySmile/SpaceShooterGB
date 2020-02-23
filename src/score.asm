@@ -40,10 +40,14 @@ updateScore::
 	ret nz
 
 	;ld b,b
-	ld a, [hl]
+	ld a, [hli]
 	and %11110000
 	ret nz
-	inc hl
+
+	ld a, [hl]
+	and %00000111
+	cp 4
+	ret nz
 
 	call spawnBoss
 	ret
