@@ -3,9 +3,6 @@ include "src/macro.asm"
 
 SECTION "Main", ROM0
 
-pressStart::
-	db "PRESS  START"
-pressStartEnd::
 
 ; Locks the CPU
 ; Params:
@@ -169,3 +166,4 @@ include "src/boss_bass.asm"
 include "src/boss_melody.asm"
 include "src/boss_jingle_bass.asm"
 include "src/boss_jingle_melody.asm"
+include "src/text.asm"

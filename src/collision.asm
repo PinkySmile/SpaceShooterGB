@@ -56,17 +56,6 @@ checkCollisionSpaceshipAsteroid::
 ;	None
 ; Registers:
 ;	N/A
-gameOverText::
-	db "GAME  OVER"
-gameOverTextEnd::
-retry::
-	db "START  RETRY"
-retryEnd::
-
-menu::
-	db "SELECT MENU"
-menuEnd::
-
 gameOver::
 	reset CHANNEL3_ON_OFF
 	reset CHANNEL2_VOLUME

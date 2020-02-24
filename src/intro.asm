@@ -175,7 +175,7 @@ moveBoss::
 	cp $A0
 	jr z, .finalExplode
 	jr nc, .fade
-	reg BGP, %00100111
+	reg BGP, %00011011
 	jr .end
 .finalExplode:
 	ld hl, BGP
