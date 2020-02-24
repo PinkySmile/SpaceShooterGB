@@ -1,5 +1,6 @@
 ; Uncompress compressed data
 ; Params:
+;    a  ->
 ;    hl -> Pointer to the compressed data
 ;    de -> Destination address
 ;    bc -> Data size
@@ -11,19 +12,59 @@
 ;    de -> Not preserved
 ;    hl -> Not preserved
 uncompress::
-	ld a, [hli]
+	push af
+	push de
+	push hl
+	pop de
+	pop hl
+	push hl
+	ld hl, .case0
+	rla
+	rla
+	rla
+	add a, l
+	ld l, a
+	ld a, h
+	adc $00
+	ld h, a
+	jp hl
+.case0:
+	pop hl
+	ld a, [de]
+	ld [hli], a
+	ld [hli], a
+	jr .endCase
+	nop
+	nop
+.case1:
+	pop hl
+	xor a
+	ld [hli], a
+	ld a, [de]
+	cpl
+	ld [hli], a
+	jr .endCase
+.endCase:
 
-	ld [de], a
 	inc de
-	ld [de], a
-	inc de
-
 	dec bc
 	xor a
 	or b
 	or c
-	jr nz, uncompress
+	jr nz, .continue
+	pop af
+	push hl
+	push de
+	pop hl
+	pop de
 	ret
+.continue:
+	pop af
+	push hl
+	push de
+	pop hl
+	pop de
+	jr uncompress
 
 ; Generates a pseudo random number.
 ; Params:

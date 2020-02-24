@@ -235,7 +235,7 @@ initBoss::
 
 intro::
 	ei
-	reg BGP, %00011011
+	reg BGP, %00101011
 	reg INTRO_COUNTER, $FF
 	call initPlayer
 	call initBoss
@@ -259,6 +259,22 @@ intro::
 
 	ld a, $10
 	call waitFrames
+
+	ld hl, nantes
+	ld bc, nantesEnd - nantes
+	ld de, $9907
+	call copyMemory
+
+	ld a, $8
+	call waitFrames
+
+	reg BGP, %00011011
+	ld a, $4
+	call waitFrames
+	reg BGP, %00001011
+	ld a, $10
+	call waitFrames
+	reg BGP, %00011011
 .loop:
 	reset INTERRUPT_REQUEST
 	ld a, [INTRO_COUNTER]
@@ -293,6 +309,11 @@ intro::
 	call waitVBLANK
 	reset LCD_CONTROL
 	call loadSprites
+	xor a
+	ld hl, textAssets + 32 * 8
+	ld bc, textAssetsEnd - (textAssets + 32 * 8)
+	ld de, VRAM_START + 32 * 16
+	call uncompress
 	reg LCD_CONTROL, LCD_BASE_CONTROL
 	di
 	ld hl, bam
