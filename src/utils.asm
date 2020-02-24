@@ -164,8 +164,9 @@ waitFrames::
 .loop:
 	or [hl]
 	ret z
+	reset INTERRUPT_REQUEST
 	halt
-	jr nz, .loop
+	jr .loop
 
 ; Get all the pressed keys.
 ; Params:

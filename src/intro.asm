@@ -8,16 +8,28 @@ makeEpitechBackground::
 	ld e, 4
 	ld hl, $9883
 .loop:
-	ld d, 14
+	ld d, 13
 .loop2:
 	ld [hli], a
 	inc a
 	dec d
 	jr nz, .loop2
-	ld bc, $20 - 14
+	inc a
+	ld bc, $20 - 13
 	dec e
 	add hl, bc
 	jr nz, .loop
+
+	ld hl, $9C00
+	ld a, $8D
+	ld d, 4
+	ld bc, $20
+.loop3:
+	ld [hl], a
+	add a, $E
+	add hl, bc
+	dec d
+	jr nz, .loop3
 	ret
 
 initPlayer::
@@ -228,7 +240,25 @@ intro::
 	call initPlayer
 	call initBoss
 	call makeEpitechBackground
+	reg WX, $5C
+	reg WY, $20
+	reg SCROLL_X, $D5
 	reg LCD_CONTROL, LCD_BASE_CONTROL
+	ld a, $40
+	call waitFrames
+	xor a
+.start:
+	ld hl, WX
+	inc [hl]
+	ld hl, SCROLL_X
+	inc [hl]
+	reset INTERRUPT_REQUEST
+	halt
+	or [hl]
+	jr nz, .start
+
+	ld a, $10
+	call waitFrames
 .loop:
 	reset INTERRUPT_REQUEST
 	ld a, [INTRO_COUNTER]

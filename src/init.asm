@@ -53,9 +53,6 @@ init::
 	reg OBP0, SPACESHIP_PALETTE
 	reg OBP1, ENNEMIES_PALETTE
 
-	reg WY, $88
-	reg WX, $78
-
 	call loadSprites
 	call DMA
 	call initWPRAM

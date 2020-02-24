@@ -10,3 +10,6 @@ menuEnd::
 pressStart::
 	db "PRESS  START"
 pressStartEnd::
+nantes::
+	db "NANTES"
+nantesEnd::

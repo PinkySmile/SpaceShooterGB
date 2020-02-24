@@ -22,6 +22,9 @@ main::
 	jp intro
 
 mainMenu::
+	reg WY, $88
+	reg WX, $78
+
 	ld hl, menuMelody
 	call playSound2
 	ld hl, menuBass
