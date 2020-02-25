@@ -22,13 +22,26 @@ main::
 	jp intro
 
 mainMenu::
-	reg WY, $58
-	reg WX, $7
-
+	call waitVBLANK
+	reset LCD_CONTROL
 	ld hl, menuMelody
 	call playSound2
 	ld hl, menuBass
 	call playSound
+
+	ld de, OAM_SRC_START << 8
+	ld bc, $A0
+	xor a
+	call fillMemory
+
+	ld de, $9800
+	ld bc, $800
+	ld a, 1
+	call fillMemory
+
+.lateInit:
+	reg WY, $58
+	reg WX, $7
 
 	call waitVBLANK
 	reset LCD_CONTROL
@@ -40,16 +53,6 @@ mainMenu::
 	ld hl, logo
 	ld bc, logoEnd - logo
 	call copyMemory
-
-	ld de, OAM_SRC_START << 8
-	ld bc, $A0
-	xor a
-	call fillMemory
-
-	ld de, $9800
-	ld bc, $800
-	ld a, 1
-	call fillMemory
 
 	ld hl, $9802
 	ld d, $8
