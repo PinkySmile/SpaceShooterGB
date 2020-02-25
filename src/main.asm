@@ -22,8 +22,8 @@ main::
 	jp intro
 
 mainMenu::
-	reg WY, $88
-	reg WX, $78
+	reg WY, $58
+	reg WX, $7
 
 	ld hl, menuMelody
 	call playSound2
@@ -72,6 +72,8 @@ mainMenu::
 	call copyMemory
 
 	reg LCD_CONTROL, LCD_BASE_CONTROL
+	xor a
+	push af
 .loop:
 	call random
 	reset INTERRUPT_REQUEST
@@ -82,17 +84,27 @@ mainMenu::
 	xor a
 	dec [hl]
 	jr nz, .skip
-	ld a, [BGP]
-	xor %11
-	ld [BGP], a
+	ld a, [LCD_CONTROL]
+	xor %00100000
+	ld [LCD_CONTROL], a
 	ld [hl], 30
 .skip:
+	pop af
+	dec a
+	push af
+	jr z, .credits
 	call getKeys
 	bit 7, a
 	jr nz, .loop
+	jr run
+.credits:
+	jp credits
 
 ; Runs the main program
 run::
+	reg WY, $88
+	reg WX, $78
+
 	reset BOSS_STATUS
 	xor a
 	ld de, $C01A
@@ -170,3 +182,4 @@ include "src/boss_melody.asm"
 include "src/boss_jingle_bass.asm"
 include "src/boss_jingle_melody.asm"
 include "src/text.asm"
+include "src/credits.asm"
