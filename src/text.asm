@@ -33,11 +33,12 @@ creditTextArray::
 	db "MUSIC", 0
 	db "JONATHAN MARTIN", 0, 0
 
-	db "GRAPHICS AND FONTS", 0
+	db "GRAPHICS AND FONT", 0
 	db "MARCANTOINE WITTLING", 0, 0
 
 	db "HARDWARE", 0
 	db "ETIENNE BERTRAND", 0
+	db "ANDGEL HALLEY", 0
 	db "JEREMY ANDREY", 0, 0
 
 	db "LORE WARDEN", 0

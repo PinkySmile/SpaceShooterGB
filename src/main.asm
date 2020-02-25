@@ -22,8 +22,6 @@ main::
 	jp intro
 
 mainMenu::
-	call waitVBLANK
-	reset LCD_CONTROL
 	ld hl, menuMelody
 	call playSound2
 	ld hl, menuBass
@@ -33,11 +31,8 @@ mainMenu::
 	ld bc, $A0
 	xor a
 	call fillMemory
-
-	ld de, $9800
-	ld bc, $800
-	ld a, 1
-	call fillMemory
+	call updateSound
+	call updateSound2
 
 .lateInit:
 	reg WY, $58
@@ -49,11 +44,20 @@ mainMenu::
 	reg BGP, %11011000
 	reg SHOOT_COOLDOWN, 30
 
+	call updateSound
+	call updateSound2
 	ld de, $8800
 	ld hl, logo
 	ld bc, logoEnd - logo
 	call copyMemory
 
+	ld de, $9800
+	ld bc, $800
+	ld a, 1
+	call fillMemory
+
+	call updateSound
+	call updateSound2
 	ld hl, $9802
 	ld d, $8
 	ld bc, $20 - $10

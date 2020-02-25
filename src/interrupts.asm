@@ -40,6 +40,7 @@ hblank_interrupt::
 	ld hl, CREDITS_SLIDING
 	xor [hl]
 	ld [hl], a
+	bit 0, a
 	jr z, .reset
 
 	ld a, [CREDITS_LINE_POS]

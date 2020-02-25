@@ -67,17 +67,54 @@ credits::
 
 	dec [hl]
 	dec [hl]
-	ld a, $80
+	ld a, $A0
 	cp [hl]
-	jr nz, .skip
+	jr z, .nextLine
+	jp .skip
 
-	jr .nextLine
 .inc:
 	inc [hl]
 	inc [hl]
-	jr nz, .skip
+	jr z, .nextLine
+	jp .skip
 
 .nextLine:
+	ld hl, CREDITS_SLIDING
+	bit 1, [hl]
+	jr z, .newLine
+
+	reset CREDITS_LINE_POS
+
+	ld a, [CREDITS_CURRENT_LINE]
+	ld e, a
+
+	xor a
+	rl e
+	rla
+	or a
+	rl e
+	rla
+
+	add $98
+	ld d, a
+	ld a, 1
+	ld bc, $20
+	call fillMemory
+
+	ld a, [LYC]
+	add a, $10
+	ld [LYC], a
+	inc a
+	ld [CREDITS_CURRENT_LINE], a
+
+	xor a
+	ld hl, CREDITS_LINES
+	or [hl]
+	jr z, .nextText
+	dec [hl]
+	jr .skip
+
+.newLine:
 	reg CREDITS_LINE_POS, $A0
 	ld a, [CREDITS_LAST_ADDR_H]
 	ld h, a
@@ -86,6 +123,7 @@ credits::
 	xor a
 	or [hl]
 	jr z, .nextText
+
 	ld a, [LYC]
 	add a, $10
 	ld [LYC], a
@@ -109,6 +147,8 @@ credits::
 	ld [CREDITS_LAST_ADDR_H], a
 	ld a, l
 	ld [CREDITS_LAST_ADDR_L], a
+	ld hl, CREDITS_LINES
+	inc [hl]
 	jr .skip
 
 .nextText:
@@ -120,8 +160,13 @@ credits::
 	ld a, %10
 	xor [hl]
 	ld [hl], a
-	jr nz, .skip
+	jr z, .newText
 
+	reset CREDITS_LINE_POS
+	jr .skip
+
+.newText:
+	reset CREDITS_LINES
 	ld a, [CREDITS_LAST_ADDR_H]
 	ld h, a
 	ld a, [CREDITS_LAST_ADDR_L]
@@ -140,6 +185,7 @@ credits::
 	ld bc, $20
 	call strncpy
 
+	reg CREDITS_LINE_POS, $A0
 	ld a, h
 	ld [CREDITS_LAST_ADDR_H], a
 	ld a, l
