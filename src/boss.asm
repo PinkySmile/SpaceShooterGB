@@ -28,9 +28,24 @@ spawnBoss:
 
 	; set the random for the bossgoesdown
 	call random
-    and %01111111
-    add $78
-    ld [$C211], a
+	and %01111111
+	add $78
+	ld [$C211], a
+
+	ld hl, ASTEROID_NEXT_INC
+	ld a, 1
+	xor [hl]
+	ld [hl], a
+	ld hl, ASTEROID_MAX_SPEED_Y
+	scf
+	jr nz, .incY
+
+	inc hl
+	rl [hl]
+	jr .end
+.incY:
+	rl [hl]
+.end:
 	ret
 
 bossAttack::
@@ -84,12 +99,12 @@ bossAttack::
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_X_OFF
 
 	ld a, [$C211]
-    dec a
-    ld [$C211], a
-    ld b, a
-    xor a
-    cp b
-    jp z, .timeBeforeGoesDown
+	dec a
+	ld [$C211], a
+	ld b, a
+	xor a
+	cp b
+	jp z, .timeBeforeGoesDown
 
 	inc [hl]
 	ld a, $80
@@ -100,8 +115,8 @@ bossAttack::
 .timeBeforeGoesDown:
 	; time before the spaceships goes down
 	ld a, $1E
-    ld [$C210], a
-    reg BOSS_STATUS, 4
+	ld [$C210], a
+	reg BOSS_STATUS, 4
 .waitToBackUp:
 	ld hl, $C210
 	xor a
@@ -134,15 +149,15 @@ bossAttack::
 	reg OBP1, ENNEMIES_PALETTE
 .endChangePalette2:
 	ld hl, BOSS_STRUCT + PLAYER_STRUCT_Y_OFF
-    xor a
-    dec [hl]
-    cp [hl]
-    jp nz, .end
+	xor a
+	dec [hl]
+	cp [hl]
+	jp nz, .end
 
-    call random
-    and %01111111
-    add $78
-    ld [$C211], a
+	call random
+	and %01111111
+	add $78
+	ld [$C211], a
 
 	reg BOSS_STATUS, 1
 .end:

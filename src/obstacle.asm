@@ -55,7 +55,9 @@ createObstacle::
 
 	; y speed downward
 	call random
-	and %00000011
+	ld b, a
+	ld a, [ASTEROID_MAX_SPEED_Y]
+	and b
 	inc a
 	ld [hli], a
 
@@ -70,7 +72,9 @@ createObstacle::
 
 	; x speed
 	call random
-	and %00000011
+	ld b, a
+	ld a, [ASTEROID_MAX_SPEED_X]
+	and b
 	ld [hl], a
 	ret
 
@@ -109,25 +113,25 @@ updateObstacles::
 	inc de
 
 	; apply the speed to x
-    inc hl
-    ld a, [hl]
-    ld b, a
-    dec hl
-    ld a, [hl]
-    ld c, a
-    ld a, b
+	inc hl
+	ld a, [hl]
+	ld b, a
+	dec hl
+	ld a, [hl]
+	ld c, a
+	ld a, b
 
-    cp 2
+	cp 2
 
-    ld b, a
-    ld a, c
+	ld b, a
+	ld a, c
 
-    jr c, .notAdd
-    sub b
-    sub b
+	jr c, .notAdd
+	sub b
+	sub b
 .notAdd:
-    add b
-    ld [hl], a
+	add b
+	ld [hl], a
 
 	; x
 	ld a, [hli]

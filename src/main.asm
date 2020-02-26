@@ -113,7 +113,9 @@ run::
 	reg WX, $78
 
 	reset BOSS_STATUS
-	xor a
+	ld [ASTEROID_NEXT_INC], a
+	ld [ASTEROID_MAX_SPEED_Y], a
+	ld [ASTEROID_MAX_SPEED_X], a
 	ld de, $C01A
 	ld bc, 300
 	call fillMemory
