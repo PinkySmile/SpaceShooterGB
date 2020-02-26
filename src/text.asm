@@ -50,5 +50,15 @@ creditTextArray::
 	db "EPIDOOR", 0
 	db "KEBAB COOK", 0
 	db "CLEMENT'S SWITCH", 0
-	db "OLD SCART TV", 0, 0
+	db "OLD SCART TV", 0
+	db "IONIS INTERNET", 0, 0
+
+	db "SPECIAL THANKS", 0
+	db "OTHER TEK3 GROUPS", 0
+	db "EDF", 0
+	db "THE SAILING SHIP", 0
+	db "TABLES AND CHAIRS", 0
+	db "THE WHITEBOARD", 0
+	db "EEPROM", 0
+	db "OUR BIG COMMUNITY", 0, 0
 creditTextArrayEnd::
