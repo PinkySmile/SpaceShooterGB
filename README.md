@@ -17,3 +17,6 @@ git clone https://github.com/Gegel85/SpaceShooterGB
 cd SpaceShooterGB
 make
 ```
+
+Try it here !
+https://gegel85.github.io/SpaceShooterGB/play
