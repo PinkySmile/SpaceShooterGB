@@ -1,8 +1,12 @@
+#!/usr/bin/python3
+
 import serial
 import argparse
 import logging
 from time import sleep
 import re
+
+upload_size = 256
 
 logging.basicConfig(level="INFO")
 parser = argparse.ArgumentParser()
@@ -37,8 +41,8 @@ def main(args):
             trash = sp.read_all()  # empty buffer
             logging.info(f"Empty buffer: {trash}")
             sleep(0.5)
-        logger.info("Sending b\"0\"")
-        sp.write(b"0")
+        logger.info("Sending \"3\"")
+        sp.write("3".encode('ascii', 'replace'))
         sleep(1)
         logger.info("Wating for \"READY\"...")
         wait_for("READY", sp)
@@ -50,14 +54,18 @@ def main(args):
         if not match or match[1] != str(total_len):
             raise Exception(f"Arduino returned wrong size, excepted {total_len}, got {match[1]}")
         logger.info("Writing Datas...")
-        for i in range(0, total_len, 4096):
-            goal = i+4096
+        for i in range(0, total_len, upload_size):
+            goal = min(i + upload_size, total_len)
             sp.write(data[i:goal])
-            while sp.inWaiting() == 0:
-                sleep(0.1)
-            recv_data = sp.read(4096)
-            if recv_data != data[i:goal]:
-                raise Exception(f"Data sent and recivied differ, sent:\n{data[i:i+4096]}\n\nrecvieve:{recv_data}")
+            logger.info(f"chunk written ({i}:{goal} of {total_len} bytes)")
+            #while True:
+            #    readsp(sp);
+            #while sp.inWaiting() == 0:
+            #    sleep(0.1)
+            #recv_data = sp.read(upload_size)
+            #if recv_data != data[i:goal]:
+            #    raise Exception(f"Data sent and recivied differ, sent:\n{data[i:i + upload_size]}\n\nrecvieve:{recv_data}")
+            wait_for("DONE", sp)
             logger.info(f"written : {goal}/{total_len}")
             sleep(0.1)
 

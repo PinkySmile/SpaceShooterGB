@@ -19,7 +19,7 @@ creditsTextEnd::
 creditTextArray::
 	db "ORIGINAL IDEA", 0
 	db "ANDGEL HALLEY", 0
-	db "TRISTAN ROUX", 0
+	db "ZOE ROUX", 0
 	db "CLEMENT LE BIHAN", 0
 	db "MARCANTOINE WITTLING", 0
 	db "JONATHAN MARTIN", 0
@@ -27,7 +27,7 @@ creditTextArray::
 
 	db "ASSEMBLY", 0
 	db "ANDGEL HALLEY", 0
-	db "TRISTAN ROUX", 0
+	db "ZOE ROUX", 0
 	db "CLEMENT LE BIHAN", 0, 0
 
 	db "MUSIC", 0
