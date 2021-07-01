@@ -65,7 +65,6 @@ void writeEEPROM(unsigned long address, byte data) {
  * Read the contents of the EEPROM and print them to the serial monitor.
  */
 void printContents() {
-  digitalWrite(OUTPUT_EN, LOW);
   delay(500);
   for (long base = 0; base < ROM_SIZE; base += 16) {
     byte data[16];
@@ -74,13 +73,12 @@ void printContents() {
     }
 
     char buf[100];
-    sprintf(buf, "%lx/%lx:  %02x %02x %02x %02x %02x %02x %02x %02x   %02x %02x %02x %02x %02x %02x %02x %02x",
+    sprintf(buf, "%04lx/%lx:  %02x %02x %02x %02x %02x %02x %02x %02x   %02x %02x %02x %02x %02x %02x %02x %02x",
             base, ROM_SIZE, data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7],
             data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15]);
 
     Serial.println(buf);
   }
-  digitalWrite(OUTPUT_EN, HIGH);
 }
 
 void readDataFromSerial() {
@@ -122,6 +120,7 @@ void readDataFromSerial() {
 
 void setup() {
   digitalWrite(WRITE_EN, HIGH);
+  digitalWrite(OUTPUT_EN, HIGH);
   pinMode(WRITE_EN, OUTPUT);
   for (int i = 0; i <= 14; i++) {
     pinMode(ADDR[i], OUTPUT);
