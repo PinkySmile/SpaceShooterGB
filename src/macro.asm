@@ -10,12 +10,12 @@
 ;    bc -> Preserved
 ;    de -> Preserved
 ;    hl -> Preserved
-reg: MACRO
+MACRO reg
 	ld a, \2
 	ld [\1], a
 ENDM
 
-reset: MACRO
+MACRO reset
 	xor a
 	ld [\1], a
 ENDM

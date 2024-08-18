@@ -112,7 +112,7 @@ credits::
 	or [hl]
 	jr z, .nextText
 	dec [hl]
-	jr .skip
+	jp .skip
 
 .newLine:
 	reg CREDITS_LINE_POS, $A0
