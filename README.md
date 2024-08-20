@@ -19,4 +19,4 @@ make
 ```
 
 Try it here !
-https://gegel85.github.io/SpaceShooterGB/play
+https://pinkysmile.github.io/SpaceShooterGB/play
